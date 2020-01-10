@@ -1,0 +1,1 @@
+web: gunicorn dbsselect.wsgi --log-file -
