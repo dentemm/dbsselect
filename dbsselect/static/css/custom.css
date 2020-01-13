@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'DBSGotham';
+  font-weight: 400;
+  src: local('temm'),
+       url('../fonts/temm.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'DBSGotham';
+  font-weight: 200;
+  src: local('temmlight'),
+       url('../fonts/temmlight.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'DBSGotham';
+  font-weight: 600;
+  src: local('temmbold'),
+       url('../fonts/temmbold.otf') format("opentype");
+}
+
+* {
+  font: 1em DBSGotham;
+}

@@ -14,6 +14,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.dbsselect.be', '.dbsselect.com', '.aws.amazon.com', '.herokuapp.com']
 
+# Enforce SSL
+SECURE_SSL_REDIRECT = True
 
 #
 # WHITENOISE CONFIG
