@@ -17,6 +17,14 @@ class HomePagePartner(Orderable, Partner):
     class Meta:
         ordering = ['sort_order']
 
+class HomePageTestimonial(Orderable, Testimonial):
+
+    page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='testimonials')
+
+    class Meta:
+        ordering = ['sort_order']
+
+
 class HomePage(Page):
 
     # content = StreamField(HomePageStreamBlock(), null=True)

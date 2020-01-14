@@ -7,7 +7,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 @register_snippet
 class Partner(models.Model):
 
-    name = models.CharField(max_length=64)
+    name = models.CharField(verbose_name='Naam', max_length=64)
     url = models.URLField(verbose_name='Website', blank=True)
     description = models.TextField(verbose_name='Beschrijving', null=True, blank=True)
     logo = models.ForeignKey(
