@@ -1,6 +1,8 @@
 from django.db import models
 
 from wagtail.snippets.models import register_snippet
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 @register_snippet
 class Partner(models.Model):
@@ -24,17 +26,11 @@ class Partner(models.Model):
 Partner.panels = [
   	MultiFieldPanel(
         [
-            FieldRowPanel([
-                FieldPanel('name', classname='col6'),
-                ImageChooserPanel('logo_white', classname='col6'),
-            ]),
-            FieldRowPanel([
-                FieldPanel('url', classname='col6')
-                
-            ]),
-            FieldRowPanel([
-                FieldPanel('description', classname='col8'),
-            ])
+            FieldPanel('name', classname='col8'),
+            FieldPanel('url', classname='col8'),
+            ImageChooserPanel('logo', classname='col10'),
+            FieldPanel('description', classname='col10')
+
 		], 
         heading='Partner informatie'
 	)  

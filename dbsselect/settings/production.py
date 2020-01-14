@@ -8,7 +8,7 @@ except ImportError:
     pass
 
 
-WSGI_APPLICATION = 'uniekgroen.wsgi.application'
+WSGI_APPLICATION = 'dbsselect.wsgi.application'
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
