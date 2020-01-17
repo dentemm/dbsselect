@@ -60,6 +60,9 @@ class HomePage(Page):
 
     # content = StreamField(HomePageStreamBlock(), null=True)
 
+    movie_title = models.CharField('Titel', max_length=64, null=True)
+    movie_link = models.URLField('Link', null=True)
+
 
 HomePage.content_panels = [
     MultiFieldPanel(
@@ -87,6 +90,14 @@ HomePage.content_panels = [
             ImageChooserPanel('sessions_image', classname='col8')
         ],
         heading='Sectie 1: BDS Select sessies',
+        classname='collapsible collapsed'
+    ),
+    MultiFieldPanel(
+        [
+            FieldPanel('movie_title', classname='col8'),
+            FieldPanel('movie_link', classname='col8'),
+        ],
+        heading='Sectie 3: BDS Select movie',
         classname='collapsible collapsed'
     ), 
     MultiFieldPanel(
