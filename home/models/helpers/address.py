@@ -12,7 +12,7 @@ class Address(models.Model):
     class Meta:
         verbose_name = 'address'
         verbose_name_plural = 'addressen'
-        ordering = ['city', 'strees']
+        ordering = ['city', 'street']
         
     def __str__(self):
         return '%s - %s' % (self.city, self.street)

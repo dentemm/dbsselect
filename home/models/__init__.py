@@ -1,14 +1,17 @@
 from django.db import models
 
 from wagtail.core.models import Page, Orderable
-from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldPanel
+from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import RichTextField
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.models import ClusterableModel
 
 from .snippets.partner import Partner
+from .snippets.location import Location
 
 class HomePagePartner(Orderable, Partner):
 
@@ -96,3 +99,64 @@ HomePage.content_panels = [
 ]
 
 
+@register_setting
+class BDSSelectSettings(ClusterableModel, BaseSetting):
+
+    email = models.EmailField(null=True)
+
+    logo = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='logo',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+        blank=True
+    )
+
+    logo_white = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='logo (wit)',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+        blank=True
+    )
+
+    location = models.ForeignKey(
+        Location,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+        )
+
+    error_image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'DBS Select data'
+
+BDSSelectSettings.panels = [
+    MultiFieldPanel(
+        [
+            FieldRowPanel([
+                FieldPanel('email', classname='col6'),
+            ]),
+            FieldRowPanel([
+                FieldPanel('location', classname='col6')
+            ])
+        ], 
+        heading='Algemene informatie'
+    ),
+    MultiFieldPanel([
+        ImageChooserPanel('logo'),
+        ImageChooserPanel('logo_white')
+    ], 
+        heading='Logos',
+        classname='collapsible collapsed'
+    ),
+]
