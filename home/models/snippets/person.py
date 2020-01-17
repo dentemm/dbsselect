@@ -24,12 +24,12 @@ class Person(models.Model):
         verbose_name = 'Persoon'
         verbose_name_plural = 'Personen'
 
-Partner.panels = [
+Person.panels = [
   	MultiFieldPanel(
         [
             FieldPanel('name', classname='col8'),
             FieldPanel('info', classname='col8'),
-            FieldPanel('age', classname='col6')
+            FieldPanel('age', classname='col6'),
             ImageChooserPanel('image', classname='col10'),
 
 		], 

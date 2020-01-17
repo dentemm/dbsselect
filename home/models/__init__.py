@@ -12,6 +12,7 @@ from modelcluster.models import ClusterableModel
 
 from .snippets.partner import Partner
 from .snippets.location import Location
+from .snippets.person import Person
 
 class HomePagePartner(Orderable, Partner):
 
@@ -20,14 +21,17 @@ class HomePagePartner(Orderable, Partner):
     class Meta:
         ordering = ['sort_order']
 
-# class HomePageTestimonial(Orderable, Testimonial):
+class HomePageTestimonial(Orderable, Person):
 
-#     page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='testimonials')
+    page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='testimonials')
+    testimonial = RichTextField('getuigenis', null=True, features=['bold', ])
 
+    class Meta:
+        ordering = ['sort_order']
 
-#     class Meta:
-#         ordering = ['sort_order']
-
+HomePageTestimonial.panels = Person.panels + [
+    FieldPanel('testimonial')
+]
 
 class HomePage(Page):
 
@@ -94,6 +98,13 @@ HomePage.content_panels = [
     ),
     MultiFieldPanel(
         [
+            InlinePanel('testimonials')
+        ],
+        heading='Sectie 2: Getuigenissen',
+        classname='collapsible collapsed'
+    ), 
+    MultiFieldPanel(
+        [
             FieldPanel('movie_title', classname='col8'),
             FieldPanel('movie_link', classname='col8'),
         ],
@@ -105,7 +116,7 @@ HomePage.content_panels = [
             InlinePanel('partners')
         ],
         heading='Partners',
-        classname='collapsible'
+        classname='collapsible collapsed'
     ), 
 ]
 
