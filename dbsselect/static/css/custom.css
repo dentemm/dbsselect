@@ -22,3 +22,15 @@
 * {
   font: 1em DBSGotham;
 }
+
+.bg-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center; 
+}
+
+.logo {
+  position: absolute;
+  top: 50px;
+  height: 100px;
+}

@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+
+{% image page.background_image width-2000 as tmp_img %}
+<div class="container-fluid vh-100 bg-primary bg-img" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url({{ tmp_img.file.url }})">
+  <div class="container">
+    {% include 'home/partials/navbar.html' %}
+
+  </div>
+</div>

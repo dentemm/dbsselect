@@ -35,7 +35,14 @@ HomePageTestimonial.panels = Person.panels + [
 
 class HomePage(Page):
 
-    subtitle = RichTextField('Ondertitle', null=True, features=['bold', ])
+    subtitle = RichTextField('Ondertitel', null=True, features=['bold', ])
+    background_image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='Achtergrond',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+    )
 
     # SECTION 1
     what = RichTextField('Wat?', null=True, features=['bold', ])
@@ -72,7 +79,8 @@ HomePage.content_panels = [
     MultiFieldPanel(
         [
             FieldPanel('title', classname='col8'),
-            FieldPanel('subtitle', classname='col8')
+            FieldPanel('subtitle', classname='col8'),
+            ImageChooserPanel('background_image', classname='col10')
         ],
         heading='Algemene informatie'
     ),
