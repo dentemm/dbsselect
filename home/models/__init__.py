@@ -83,7 +83,7 @@ HomePage.content_panels = [
             FieldPanel('download_text', classname='col8'),
             ImageChooserPanel('what_image', classname='col8')
         ],
-        heading='Sectie 1: wat is BDS?',
+        heading='Sectie 1: wat is DBS?',
         classname='collapsible collapsed'
     ),
     MultiFieldPanel(
@@ -93,7 +93,7 @@ HomePage.content_panels = [
             FieldPanel('data_text', classname='col8'),
             ImageChooserPanel('sessions_image', classname='col8')
         ],
-        heading='Sectie 1: BDS Select sessies',
+        heading='Sectie 1: DBS Select sessies',
         classname='collapsible collapsed'
     ),
     MultiFieldPanel(
@@ -108,7 +108,7 @@ HomePage.content_panels = [
             FieldPanel('movie_title', classname='col8'),
             FieldPanel('movie_link', classname='col8'),
         ],
-        heading='Sectie 3: BDS Select movie',
+        heading='Sectie 3: DBS Select movie',
         classname='collapsible collapsed'
     ), 
     MultiFieldPanel(
