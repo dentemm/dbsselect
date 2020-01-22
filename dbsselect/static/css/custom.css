@@ -1,26 +1,35 @@
 @font-face {
-  font-family: 'DBSGotham';
+  font-family: 'Gotham';
   font-weight: 400;
   src: local('temm'),
        url('../fonts/temm.otf') format("opentype");
 }
 
 @font-face {
-  font-family: 'DBSGotham';
-  font-weight: 200;
+  font-family: 'GothamLight';
+  font-weight: 300;
   src: local('temmlight'),
        url('../fonts/temmlight.otf') format("opentype");
 }
 
 @font-face {
-  font-family: 'DBSGotham';
+  font-family: 'GothamBold';
   font-weight: 600;
   src: local('temmbold'),
        url('../fonts/temmbold.otf') format("opentype");
 }
 
 * {
-  font: 1em DBSGotham;
+  font: 1em GothamLight;
+}
+
+p {
+  line-height: 1.4em;
+}
+
+b {
+  font-family: 'GothamBold';
+  font-weight: 600;
 }
 
 .bg-img {
@@ -33,4 +42,26 @@
   position: absolute;
   top: 50px;
   height: 100px;
+}
+
+.btn-outline-primary.btn-white-primary {
+  background-color: #fafafa;
+  border-color: #fafafa;
+}
+
+.btn-outline-primary.btn-white-primary, .btn-outline-secondary.btn-white-secondary {
+  background-color: #fafafa;
+  border-color: #fafafa;
+}
+
+.btn-outline-primary.btn-white-primary:hover {
+  color: #fff;
+  background-color: #006769;
+  border-color: #005a5c;
+}
+
+.btn-outline-secondary.btn-white-secondary:hover {
+  color: #fff;
+  background-color: #2c2d2e;
+  border-color: #262727;
 }
