@@ -32,6 +32,12 @@ b {
   font-weight: 600;
 }
 
+#fundedby {
+  position: absolute;
+  bottom: 0px;
+  padding: 20px;
+}
+
 .bg-img {
   background-repeat: no-repeat;
   background-size: cover;

@@ -43,6 +43,14 @@ class HomePage(Page):
         related_name='+',
         null=True,
     )
+    funded = models.CharField('Funded by', max_length=32, default='Project funded by')
+    funded_image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='Afbeelding',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+    )
 
     # SECTION 1
     what = RichTextField('Wat?', null=True, features=['bold', ])
@@ -71,6 +79,10 @@ class HomePage(Page):
 
     # content = StreamField(HomePageStreamBlock(), null=True)
 
+    # TESTIMONIALS
+    testimonials_title = models.CharField('Getuigenissen', max_length=32, default='Testimonials')
+    testimonials_subtitle = models.CharField('Ondertitel', max_length=64, default='from people participating in a DBS session')
+
     movie_title = models.CharField('Titel', max_length=64, null=True)
     movie_link = models.URLField('Link', null=True)
 
@@ -80,7 +92,9 @@ HomePage.content_panels = [
         [
             FieldPanel('title', classname='col8'),
             FieldPanel('subtitle', classname='col8'),
-            ImageChooserPanel('background_image', classname='col10')
+            ImageChooserPanel('background_image', classname='col10'),
+            FieldPanel('funded', classname='col8'),
+            ImageChooserPanel('funded_image', classname='col10')
         ],
         heading='Algemene informatie'
     ),
@@ -106,6 +120,8 @@ HomePage.content_panels = [
     ),
     MultiFieldPanel(
         [
+            FieldPanel('testimonials_title', classname='col8'),
+            FieldPanel('testimonials_title', classname='col8'),
             InlinePanel('testimonials')
         ],
         heading='Sectie 2: Getuigenissen',
