@@ -32,10 +32,20 @@ b {
   font-weight: 600;
 }
 
+#dbs-title p {
+  margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8em;
+  }
+}
+
 #fundedby {
   position: absolute;
   bottom: 0px;
-  padding: 20px;
+  padding: 30px;
 }
 
 .bg-img {

@@ -1,5 +1,28 @@
-<div class="container">
-  <div>
-    <h2>{{ page.testimonials_title }}</h2>
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="container py-5">
+  <div class="text-center py-3">
+    <h2 class="text-primary"><b>{{ page.testimonials_title|upper }}</b></h2>
+    <h6 class="text-secondary">{{ page.testimonials_subtitle }}</h6>
+  </div>
+  <div class="row my-5 text-secondary">
+    {% for item in page.testimonials.all %}
+      <div class="col-md-4 pl-3 pr-5">
+        <p class="mb-1">
+          {{ item.testimonial|richtext }}
+        </p>
+        <div class="row pt-4">
+          <div class="col-3">
+            {% image item.image height-50 as tmp_img %}
+            <img src="{{ tmp_img.file.url }}" class="img-fluid rounded-circle"/>
+          </div>
+          <div class="col-9">
+            <p class="text-primary my-0"><b>{{ item.name }}</b></p>
+            <small>{{item.age}} years old</small><br/>
+            <small>{{item.info}}</small>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 </div>

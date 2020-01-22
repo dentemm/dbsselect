@@ -1,9 +1,14 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% image page.background_image width-2000 as tmp_img %}
-<div class="container-fluid vh-100 bg-primary bg-img" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url({{ tmp_img.file.url }})">
-  <div class="container" style="height: 100%">
+<div class="container-fluid vh-100 bg-primary bg-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url({{ tmp_img.file.url }})">
+  <div class="container h-100">
     {% include 'home/partials/navbar.html' %}
     {% include 'home/partials/fundedby.html' %}
+    <div id="dbs-title" class="mt-5">
+      <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center text-white">
+        <h1>{{ page.subtitle|upper|richtext }}</h1>
+      </div>
+    </div>
   </div>
 </div>

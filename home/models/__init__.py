@@ -83,8 +83,12 @@ class HomePage(Page):
     testimonials_title = models.CharField('Getuigenissen', max_length=32, default='Testimonials')
     testimonials_subtitle = models.CharField('Ondertitel', max_length=64, default='from people participating in a DBS session')
 
+    # MOVIE
     movie_title = models.CharField('Titel', max_length=64, null=True)
     movie_link = models.URLField('Link', null=True)
+
+    # PARTNERS
+    partners_title = models.CharField('Partners', max_length=32, default='Partners')
 
 
 HomePage.content_panels = [
@@ -137,6 +141,7 @@ HomePage.content_panels = [
     ), 
     MultiFieldPanel(
         [
+            FieldPanel('partners_title', classname='col8'),
             InlinePanel('partners')
         ],
         heading='Partners',
