@@ -3,6 +3,7 @@ from django.db import models
 from wagtail.core.models import Page, Orderable
 from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.fields import RichTextField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
@@ -62,6 +63,13 @@ class HomePage(Page):
         related_name='+',
         null=True,
     )
+    what_file = models.ForeignKey(
+        'wagtaildocs.Document',
+        verbose_name='Bestand',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True
+    )
     download_text = models.CharField('Download tekst', max_length=32, default='Download DBS Brochure')
 
     sessions = RichTextField('Sessies', null=True, features=['bold', ])
@@ -74,6 +82,7 @@ class HomePage(Page):
         null=True,
     )
     data_text = models.CharField('Data tekst', max_length=32, default='Check dates') 
+    data_link = models.URLField('Link', null=True)
 
     # RichTextField('Beschrijving', blank=True, null=True, features=['h5', 'h6', 'bold', 'italic', 'link', 'hr', 'blockquote'])
 
@@ -107,6 +116,7 @@ HomePage.content_panels = [
             FieldPanel('what', classname='col8'),
             FieldPanel('what_info', classname='col8'),
             FieldPanel('download_text', classname='col8'),
+            DocumentChooserPanel('what_file', classname='col8'),
             ImageChooserPanel('what_image', classname='col8')
         ],
         heading='Sectie 1: wat is DBS?',
@@ -117,6 +127,7 @@ HomePage.content_panels = [
             FieldPanel('sessions', classname='col8'),
             FieldPanel('sessions_info', classname='col8'),
             FieldPanel('data_text', classname='col8'),
+            FieldPanel('data_link', classname='col8'),
             ImageChooserPanel('sessions_image', classname='col8')
         ],
         heading='Sectie 1: DBS Select sessies',
