@@ -51,6 +51,12 @@ hr {
   }
 }
 
+@media (min-width: 576px) {
+  .container {
+    max-width: 1250px;
+  }
+}
+
 #fundedby {
   position: absolute;
   bottom: 0px;
@@ -68,6 +74,12 @@ hr {
   top: 50px;
   height: 100px;
 }
+
+/* .triangle-primary-right {
+  border-right-color: #008c8f !important;
+  border-right: 10rem solid;
+  border-top: 38rem solid transparent;
+} */
 
 .btn-outline-primary.btn-white-primary {
   background-color: #fafafa;

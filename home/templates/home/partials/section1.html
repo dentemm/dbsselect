@@ -1,27 +1,32 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div id="what" class="container bg-primary">
-  <div class="row">
-    {% image page.what_image width-1000 as bg_img %}
-    <div class="col-md-6 bg-white bg-img" style="background-image: url({{ bg_img.file.url }})">
+<div id="what" class="container-fluid bg-primary">
+  <div class="container">
+    <div class="row">
+      {% image page.what_image width-1000 as bg_img %}
+      <div class="col-md-6 bg-white bg-img triangle-primary-right" style="background-image: url({{ bg_img.file.url }})">
 
-    </div>
-    <div class="col-md-6 text-white py-5 px-4">
-      <h2 class="font-weight-light">{{ page.what|upper|richtext }}</h2>
-      <p class="font-weight-light">{{ page.what_info|richtext }}</p>
-      <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      </div>
+      <div class="col-md-6 text-white py-5 px-4">
+        <h2 class="font-weight-light">{{ page.what|upper|richtext }}</h2>
+        <p class="font-weight-light">{{ page.what_info|richtext }}</p>
+        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      </div>
     </div>
   </div>
 </div>
-<div id="sessions" class="container bg-secondary">
-  <div class="row">
-    {% image page.sessions_image width-1000 as bg_img %}
-    <div class="col-md-6 text-white py-5 px-4">
-      <h2 class="font-weight-light">{{ page.sessions|upper|richtext }}</h2>
-      <p class="font-weight-light">{{ page.sessions_info|richtext }}</p>
-      <a href="{{ page.data_link }}" target="_blank" class="btn btn-outline-secondary btn-white-secondary my-4"><b>{{ page.data_text|upper }}</b></a>
-    </div>
-    <div class="col-md-6 bg-white bg-img" style="background-image: url({{ bg_img.file.url }})">
+
+<div id="sessions" class="container-fluid bg-secondary">
+  <div class="container">
+    <div class="row">
+      {% image page.sessions_image width-1000 as bg_img %}
+      <div class="col-md-6 text-white py-5 px-4">
+        <h2 class="font-weight-light">{{ page.sessions|upper|richtext }}</h2>
+        <p class="font-weight-light">{{ page.sessions_info|richtext }}</p>
+        <a href="{{ page.data_link }}" target="_blank" class="btn btn-outline-secondary btn-white-secondary my-4"><b>{{ page.data_text|upper }}</b></a>
+      </div>
+      <div class="col-md-6 bg-white bg-img" style="background-image: url({{ bg_img.file.url }})">
+      </div>
     </div>
   </div>
 </div>
