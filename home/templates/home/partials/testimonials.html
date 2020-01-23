@@ -12,11 +12,11 @@
           {{ item.testimonial|richtext }}
         </p>
         <div class="row py-4 mb-5">
-          <div class="col-3">
+          <div class="col-3 text-center">
             {% image item.image height-50 as tmp_img %}
             <img src="{{ tmp_img.file.url }}" class="img-fluid rounded-circle"/>
           </div>
-          <div class="col-9">
+          <div class="col-9 pl-0">
             <p class="text-primary my-0"><b>{{ item.name }}</b></p>
             <small>{{item.age}} years old</small><br/>
             <small>{{item.info}}</small>
