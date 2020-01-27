@@ -1,13 +1,24 @@
-<div id="contact" class="container py-5">
+<div class="container py-5">
   <div class="text-center text-white">
     <h5 class="py-3"><b>CONTACT</b></h5>
     <p>
-      {{ settings.home.BDSSelectSettings.email }}
+      <a class="text-white" href="mailto:{{ settings.home.BDSSelectSettings.email }}">{{ settings.home.BDSSelectSettings.email }}</a>
     </p>
     <p>
       {{ settings.home.BDSSelectSettings.location.name }}<br/>
       {{ settings.home.BDSSelectSettings.location.street }} {{ settings.home.BDSSelectSettings.location.number }}<br/>
       {{ settings.home.BDSSelectSettings.location.postal_code }} {{ settings.home.BDSSelectSettings.location.city }}<br/>
     </p>
+  </div>
+</div>
+<div style="width: 100%; border-top: 1px solid #828383;"></div>
+<div class="container d-flex">
+  <div class="ml-auto py-4">
+    <span class="copyright text-white">
+      ©
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, <a class="text-white" href="mailto:tim@thinkmobile.be">Think Mobile</a>
+    </span>
   </div>
 </div>
