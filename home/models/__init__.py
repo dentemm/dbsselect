@@ -184,6 +184,15 @@ class BDSSelectSettings(ClusterableModel, BaseSetting):
         blank=True
     )
 
+    favicon = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='favicon',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+        blank=True
+    )
+
     location = models.ForeignKey(
         Location,
         on_delete=models.SET_NULL,
@@ -216,7 +225,8 @@ BDSSelectSettings.panels = [
     ),
     MultiFieldPanel([
         ImageChooserPanel('logo'),
-        ImageChooserPanel('logo_white')
+        ImageChooserPanel('logo_white'),
+        ImageChooserPanel('favicon')
     ], 
         heading='Logos',
         classname='collapsible collapsed'
