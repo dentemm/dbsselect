@@ -8,7 +8,6 @@ from wagtailmedia.edit_handlers import MediaChooserPanel
 @register_snippet
 class Video(models.Model):
 
-    title = models.CharField(verbose_name='Titel', max_length=64)
     description = models.TextField(verbose_name='Beschrijving', null=True, blank=True)
     video = models.ForeignKey(
         'wagtailmedia.Media',
@@ -22,7 +21,7 @@ class Video(models.Model):
     class Meta:
 		    verbose_name = 'video'
 		    verbose_name_plural = 'videos'
-		    ordering = ['title', ]
+		    ordering = ['video', ]
         
     def __str__(self):
 		    return self.title
@@ -30,10 +29,7 @@ class Video(models.Model):
 Video.panels = [
 	  MultiFieldPanel([
 			  FieldRowPanel([
-					  FieldPanel('title', classname='col6'),
-				]),
-			  FieldRowPanel([
-					  FieldPanel('description', classname='col6'),
+					  FieldPanel('description', classname='col12'),
         ]),
         MediaChooserPanel('video')
 

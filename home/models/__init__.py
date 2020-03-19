@@ -14,6 +14,7 @@ from modelcluster.models import ClusterableModel
 from .snippets.partner import Partner
 from .snippets.location import Location
 from .snippets.person import Person
+from .snippets.video import Video
 
 class HomePagePartner(Orderable, Partner):
 
@@ -34,7 +35,12 @@ HomePageTestimonial.panels = Person.panels + [
     FieldPanel('testimonial')
 ]
 
-# class HomePageVideo(Orderable, Video)
+class HomePageVideo(Orderable, Video):
+
+    page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='videos')
+    
+    class Meta:
+        ordering = ['sort_order']
 
 class HomePage(Page):
 
@@ -101,6 +107,9 @@ class HomePage(Page):
     # PARTNERS
     partners_title = models.CharField('Partners', max_length=32, default='Partners')
 
+    # VIDEOS
+    videos_title = models.CharField('Videos', max_length=32, default='More videos')
+    videos_discription = models.CharField('Ondertitel', max_length=128, default="", blank=True)
 
 HomePage.content_panels = [
     MultiFieldPanel(
@@ -152,6 +161,14 @@ HomePage.content_panels = [
         heading='Sectie 3: DBS Select movie',
         classname='collapsible collapsed'
     ), 
+    MultiFieldPanel([
+        FieldPanel('videos_title', classname='col8'),
+        FieldPanel('videos_discription', classname='col8'),
+        InlinePanel('videos')
+    ], 
+        heading='Videos',
+        classname='collapsible collapsed'
+    ),
     MultiFieldPanel(
         [
             FieldPanel('partners_title', classname='col8'),
