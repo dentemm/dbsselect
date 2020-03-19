@@ -34,6 +34,8 @@ HomePageTestimonial.panels = Person.panels + [
     FieldPanel('testimonial')
 ]
 
+# class HomePageVideo(Orderable, Video)
+
 class HomePage(Page):
 
     subtitle = RichTextField('Ondertitel', null=True, features=['bold', ])
