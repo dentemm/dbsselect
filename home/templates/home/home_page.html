@@ -30,9 +30,11 @@
   {% include 'home/partials/movie.html' with page=page %}
 </section>
 
+{% if page.videos.count > 0 %}
 <section>
   {% include 'home/partials/more_movies.html' with page=page %}
 </section>
+{% endif %}
 
 <section>
   {% include 'home/partials/partners.html' with page=page %}

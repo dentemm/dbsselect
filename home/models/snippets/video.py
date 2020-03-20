@@ -8,6 +8,8 @@ from wagtailmedia.edit_handlers import MediaChooserPanel
 @register_snippet
 class Video(models.Model):
 
+    title = models.CharField(verbose_name='Titel', max_length=64, null=True)
+    link = models.URLField(verbose_name='Video link', null=True)
     description = models.TextField(verbose_name='Beschrijving', null=True, blank=True)
     video = models.ForeignKey(
         'wagtailmedia.Media',
@@ -27,11 +29,11 @@ class Video(models.Model):
 		    return self.title
 
 Video.panels = [
-	  MultiFieldPanel([
-			  FieldRowPanel([
-					  FieldPanel('description', classname='col12'),
-        ]),
-        MediaChooserPanel('video')
+	MultiFieldPanel([
+        FieldPanel('title', classname='col12'),
+        FieldPanel('link', classname='col12'),
+		FieldPanel('description', classname='col12'),
+        #MediaChooserPanel('video')
 
     ], heading='Video informatie')
 ]

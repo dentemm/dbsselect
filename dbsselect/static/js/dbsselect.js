@@ -7,8 +7,10 @@ window.onload = function () {
       return (match && match[2].length === 11) ? match[2] : null;
   };
 
-  const videoUrl = $('iframe').first().attr('src');
-  const videoId = getId(videoUrl);
+  $('iframe').each(function() {
 
-  $('iframe').attr('src', `//www.youtube.com/embed/${videoId}`);
+    const videoUrl = $(this).attr('src');
+    const videoId = getId(videoUrl);
+    $(this).attr('src', `//www.youtube.com/embed/${videoId}`);
+  });
 }
