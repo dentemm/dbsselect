@@ -5,26 +5,30 @@
     <h2 class="text-primary"><b>{{ page.videos_title|upper }}</b></h2>
   </div>
 
+  
+  <div class="row">
+
+{% with page.videos.count as length %}
+
   {% for video in page.videos.all %}
-    {{ video.video.title }}
-    {{ video.description }}
-
-
-    <video width="320" height="240" controls>
-      <source src="{{ video.video.file.url }}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-  <div class="card">
-    {% comment %} <img src="{{ video.video.file.url }}" class="card-img-top" alt="{{ video.description }}"> {% endcomment %}
-    <div style="padding-top: 60%">
-      <iframe width="100%" height="100%" src="{{ video.video.file.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="position:absolute;top:0;">
-      </iframe>
+    <div class="col-md-6 offset-md-0 col-sm-10 offset-sm-1">
+      <div class="card">
+        <video width="100%" controls>
+          <source src="{{ video.video.file.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video> 
+        <div class="card-body">
+          <h5 class="card-title text-primary"><b>{{ video.video.title|upper }}</b></h5>
+          <p class="card-text">{{ video.description }}</p>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <p class="card-text">{{ video.description }}</p>
-    </div>
+  {% endfor %}
+
+{% endwith %}
   </div>
 
-  {% endfor %}
+  <div class="my-5 col-lg-6 offset-lg-3 col-sm-8 offset-sm-2">
+    <hr class="text-secondary"/>
+  </div>
 </div>
