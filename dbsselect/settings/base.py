@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
 
+    'wagtail.locales',
+
     'modelcluster',
     'taggit',
 
@@ -64,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'dbsselect.urls'
@@ -123,7 +126,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl'
+
+LANGUAGES = WAGTAIL_CONTENT_LANGUAGES = [
+    ('nl', 'Dutch'),
+    ('en', 'English'),
+    ('fr', 'French')
+]
 
 TIME_ZONE = 'UTC'
 
@@ -161,6 +170,8 @@ MEDIA_URL = '/media/'
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "dbsselect"
+
+WAGTAIL_I18N_ENABLED = True
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash

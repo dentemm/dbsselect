@@ -179,6 +179,9 @@ HomePage.content_panels = [
     ), 
 ]
 
+# HomePage.settings_panels = Page.settings_panels + [
+#     FieldPanel('locale')
+# ]
 
 @register_setting
 class BDSSelectSettings(ClusterableModel, BaseSetting):
