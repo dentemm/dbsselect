@@ -10,7 +10,7 @@ class Testimonial(models.Model):
     person = models.Foreignkey(
         Person,
         on_delete=models.CASCADE,
-        related_name='testimonials'
+        related_name='testims'
     )
 
     class Meta:

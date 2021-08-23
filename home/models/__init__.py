@@ -15,6 +15,7 @@ from .snippets.partner import Partner
 from .snippets.location import Location
 from .snippets.person import Person
 from .snippets.video import Video
+from .snippets.testimonial import Testimonial
 
 class HomePagePartner(Orderable, Partner):
 
@@ -32,6 +33,18 @@ class HomePageTestimonial(Orderable, Person):
         ordering = ['sort_order']
 
 HomePageTestimonial.panels = Person.panels + [
+    FieldPanel('testimonial')
+]
+
+class SessionsPageTestimonial(Orderable, Testimonial):
+
+    page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='testimonials')
+    testimonial = models.ForeignKey(Testimonial, on_delete=models.CASCADE, related_name='+')
+
+    class Meta:
+        ordering = ['sort_order']
+
+SessionsPageTestimonial.panels = [
     FieldPanel('testimonial')
 ]
 
@@ -177,6 +190,25 @@ HomePage.content_panels = [
         heading='Partners',
         classname='collapsible collapsed'
     ), 
+]
+
+class AboutPage(Page):
+
+    block_1_title = models.CharField('deel 1 tite', max_length=54)
+    block_1_description = models.TextField('deel 1 beschrijving')
+
+    block_2_title = models.CharField('deel 2 titel', max_length=54)
+    block_2_description = models.TextField('deel 2 beschrijving')
+
+    block_3_title = models.CharField('deel 3 titel', max_length=54)
+    block_3_description = models.TextField('deel 3 beschrijving')
+
+
+class SessionsPage(Page):
+    pass
+
+SessionsPage.content_panels = Page.content_panels + [
+    InlinePanel('testimonials')
 ]
 
 # HomePage.settings_panels = Page.settings_panels + [
