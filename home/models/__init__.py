@@ -16,6 +16,7 @@ from .snippets.location import Location
 from .snippets.person import Person
 from .snippets.video import Video
 from .snippets.testimonial import Testimonial
+from .snippets.session import Session
 
 class HomePagePartner(Orderable, Partner):
 
