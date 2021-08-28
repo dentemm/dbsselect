@@ -38,7 +38,6 @@ HomePageTestimonial.panels = Person.panels + [
 ]
 
 class SessionsPageTestimonial(Orderable, Testimonial):
-
     page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='testimonials')
     testimonial = models.ForeignKey(Testimonial, on_delete=models.CASCADE, related_name='+')
 
@@ -47,6 +46,17 @@ class SessionsPageTestimonial(Orderable, Testimonial):
 
 SessionsPageTestimonial.panels = [
     FieldPanel('testimonial')
+]
+
+class SessionsPageSession(Orderable, Session):
+    page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='sessions')
+    session = models.ForeignKey(verbose_name = 'sessie', to=Session, on_delete=models.CASCADE, related_name='+')
+
+    class Meta:
+        ordering = ['sort_order']
+
+SessionsPageSession.panels = [
+    FieldPanel('session')
 ]
 
 class HomePageVideo(Orderable, Video):
@@ -193,6 +203,9 @@ HomePage.content_panels = [
     ), 
 ]
 
+HomePage.parent_page_types = []
+HomePage.subpage_types = ['home.SessionsPage']
+
 class AboutPage(Page):
 
     block_1_title = models.CharField('deel 1 tite', max_length=54)
@@ -204,12 +217,21 @@ class AboutPage(Page):
     block_3_title = models.CharField('deel 3 titel', max_length=54)
     block_3_description = models.TextField('deel 3 beschrijving')
 
+AboutPage.content_panels = Page.content_panels + [
+
+]
+
 
 class SessionsPage(Page):
     pass
 
 SessionsPage.content_panels = Page.content_panels + [
-    InlinePanel('testimonials')
+    MultiFieldPanel([
+        InlinePanel('testimonials')
+    ], heading='Getuigenissen'),
+     MultiFieldPanel([
+        InlinePanel('sessions')
+    ], heading='Sessies'),   
 ]
 
 # HomePage.settings_panels = Page.settings_panels + [
