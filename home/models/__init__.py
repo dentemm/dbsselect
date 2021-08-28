@@ -6,6 +6,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.fields import RichTextField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -37,26 +38,28 @@ HomePageTestimonial.panels = Person.panels + [
     FieldPanel('testimonial')
 ]
 
-class SessionsPageTestimonial(Orderable, Testimonial):
+class SessionsPageTestimonial(Orderable, models.Model):
     page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='testimonials')
-    testimonial = models.ForeignKey(Testimonial, on_delete=models.CASCADE, related_name='+')
+    testimonial = models.ForeignKey(verbose_name='getuigenis', to=Testimonial, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['sort_order']
+        unique_together = ('page', 'testimonial')
 
 SessionsPageTestimonial.panels = [
-    FieldPanel('testimonial')
+    SnippetChooserPanel('testimonial')
 ]
 
-class SessionsPageSession(Orderable, Session):
+class SessionsPageSession(Orderable, models.Model):
     page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='sessions')
-    session = models.ForeignKey(verbose_name = 'sessie', to=Session, on_delete=models.CASCADE, related_name='+')
+    session = models.ForeignKey(verbose_name='sessie', to=Testimonial, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['sort_order']
+        unique_together = ('page', 'session')
 
 SessionsPageSession.panels = [
-    FieldPanel('session')
+    SnippetChooserPanel('session')
 ]
 
 class HomePageVideo(Orderable, Video):
@@ -223,6 +226,8 @@ AboutPage.content_panels = Page.content_panels + [
 
 
 class SessionsPage(Page):
+
+    # sessions = ParentalManyToManyField(verbose_name='sessies', to=Session, blank=True, null=True)
     pass
 
 SessionsPage.content_panels = Page.content_panels + [

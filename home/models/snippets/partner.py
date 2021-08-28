@@ -4,6 +4,11 @@ from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+PARTNER_CHOICES = (
+    (1, 'Project Partner'),
+    (2, 'Supporting Partner'),
+)
+
 @register_snippet
 class Partner(models.Model):
 
@@ -15,6 +20,7 @@ class Partner(models.Model):
         on_delete=models.CASCADE,
         related_name='+'
     )
+    partner_type = models.IntegerField(verbose_name='Partner type', choices=PARTNER_CHOICES, default=2)
 
     def __str__(self):
         return self.name
