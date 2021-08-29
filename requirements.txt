@@ -9,6 +9,7 @@ dj-database-url==0.5.0
 Django==3.2.6
 django-filter==2.4.0
 django-modelcluster==5.1
+django-recaptcha==2.0.6
 django-storages==1.8
 django-taggit==1.2.0
 django-treebeard==4.3.1
@@ -37,6 +38,7 @@ typing-extensions==3.10.0.0
 Unidecode==1.1.1
 urllib3==1.25.7
 wagtail==2.14.1
+wagtail-django-recaptcha==1.0
 wagtailmedia==0.7.1
 webencodings==0.5.1
 whitenoise==5.0.1

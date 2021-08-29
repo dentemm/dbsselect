@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'storages',
-    'wagtailmedia'
+    'wagtailmedia',
+    'wagtailcaptcha',
 ]
 
 MIDDLEWARE = [

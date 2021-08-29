@@ -7,6 +7,9 @@ from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.fields import RichTextField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+
+from wagtailcaptcha.models import WagtailCaptchaForm
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -18,6 +21,7 @@ from .snippets.person import Person
 from .snippets.video import Video
 from .snippets.testimonial import Testimonial
 from .snippets.session import Session
+from .snippets.press import Press
 
 class HomePagePartner(Orderable, Partner):
 
@@ -63,7 +67,6 @@ SessionsPageSession.panels = [
 ]
 
 class HomePageVideo(Orderable, Video):
-
     page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='videos')
     
     class Meta:
@@ -207,7 +210,7 @@ HomePage.content_panels = [
 ]
 
 HomePage.parent_page_types = []
-HomePage.subpage_types = ['home.SessionsPage']
+HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage']
 
 class AboutPage(Page):
 
@@ -223,7 +226,6 @@ class AboutPage(Page):
 AboutPage.content_panels = Page.content_panels + [
 
 ]
-
 
 class SessionsPage(Page):
 
@@ -242,6 +244,42 @@ SessionsPage.content_panels = Page.content_panels + [
 # HomePage.settings_panels = Page.settings_panels + [
 #     FieldPanel('locale')
 # ]
+
+class ContactPageFormField(AbstractFormField):
+    page = ParentalKey('home.ContactPage', related_name='form_fields')
+
+class ContactPage(WagtailCaptchaForm, AbstractEmailForm):
+
+    thank_you_text = models.CharField(verbose_name='success message', blank=True, max_length=160)
+
+    class Meta:
+        verbose_name = 'Contact page'
+        verbose_name_plural = 'Contact pages'
+
+ContactPage.content_panels = Page.content_panels + [
+    MultiFieldPanel(
+        [
+            FieldPanel('subject'),
+            FieldPanel('thank_you_text'),
+            FieldRowPanel([
+                FieldPanel('to_address', classname='col6'),
+                FieldPanel('from_address', classname='col6')
+            ])
+        ],
+        heading='Form configuration',
+        classname='collapsible collapsed'
+    ),
+    MultiFieldPanel(
+        [
+            InlinePanel('form_fields', label='Form fields'),
+        ],
+        heading='Form fields',
+        classname='collapsible collapsed'
+    )
+]
+
+ContactPage.parent_page_types = ['home.HomePage']
+ContactPage.subpage_types = []
 
 @register_setting
 class BDSSelectSettings(ClusterableModel, BaseSetting):
