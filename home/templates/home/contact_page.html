@@ -1,1 +1,13 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container">
+    {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
+  </div>
+
+
+  <section class="bg-secondary">
+    {% include 'home/partials/footer.html' with settings=settings %}
+  </section>
+{% endblock %}

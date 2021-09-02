@@ -214,17 +214,52 @@ HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPa
 
 class AboutPage(Page):
 
-    block_1_title = models.CharField('deel 1 tite', max_length=54)
-    block_1_description = models.TextField('deel 1 beschrijving')
+    block_1_title = models.CharField('titel', max_length=54)
+    block_1_description = models.TextField('beschrijving')
+    block_1_image = models.ForeignKey(
+        verbose_name='Afbeelding',
+        to='wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+    )
 
-    block_2_title = models.CharField('deel 2 titel', max_length=54)
-    block_2_description = models.TextField('deel 2 beschrijving')
+    block_2_title = models.CharField('titel', max_length=54)
+    block_2_description = models.TextField('beschrijving')
+    block_2_image = models.ForeignKey(
+        verbose_name='Afbeelding',
+        to='wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+    )
 
-    block_3_title = models.CharField('deel 3 titel', max_length=54)
-    block_3_description = models.TextField('deel 3 beschrijving')
+    block_3_title = models.CharField('titel', max_length=54)
+    block_3_description = models.TextField('beschrijving')
+    block_3_image = models.ForeignKey(
+        verbose_name='Afbeelding',
+        to='wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+    )
 
 AboutPage.content_panels = Page.content_panels + [
-
+    MultiFieldPanel([
+        FieldPanel('block_1_title', classname='col9'),
+        FieldPanel('block_1_description', classname='col9'),
+        ImageChooserPanel('block_1_image', classname='col6')
+    ], heading="Deel 1"),
+    MultiFieldPanel([
+        FieldPanel('block_2_title', classname='col9'),
+        FieldPanel('block_2_description', classname='col9'),
+        ImageChooserPanel('block_2_image', classname='col6')
+    ], heading="Deel 2"),
+    MultiFieldPanel([
+        FieldPanel('block_3_title', classname='col9'),
+        FieldPanel('block_3_description', classname='col9'),
+        ImageChooserPanel('block_3_image', classname='col6')
+    ], heading="Deel 3")
 ]
 
 class SessionsPage(Page):
@@ -249,6 +284,13 @@ class ContactPageFormField(AbstractFormField):
     page = ParentalKey('home.ContactPage', related_name='form_fields')
 
 class ContactPage(WagtailCaptchaForm, AbstractEmailForm):
+
+    directions_image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='+'
+    )
 
     thank_you_text = models.CharField(verbose_name='success message', blank=True, max_length=160)
 
