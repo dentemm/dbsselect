@@ -237,56 +237,61 @@ class AboutPage(Page):
 
     content = StreamField(AboutPageStreamBlock(), null=True)
 
-    block_1_title = models.CharField('titel', max_length=54)
-    block_1_description = models.TextField('beschrijving')
+    block_1_title = models.CharField('titel', max_length=54, blank=True)
+    block_1_description = models.TextField('beschrijving', blank=True)
     block_1_image = models.ForeignKey(
         verbose_name='Afbeelding',
         to='wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
-        related_name='+'
+        related_name='+',
+        blank=True
     )
 
-    block_2_title = models.CharField('titel', max_length=54)
-    block_2_description = models.TextField('beschrijving')
+    block_2_title = models.CharField('titel', max_length=54, blank=True)
+    block_2_description = models.TextField('beschrijving', blank=True)
     block_2_image = models.ForeignKey(
         verbose_name='Afbeelding',
         to='wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
-        related_name='+'
+        related_name='+',
+        blank=True
     )
 
-    block_3_title = models.CharField('titel', max_length=54)
-    block_3_description = models.TextField('beschrijving')
+    block_3_title = models.CharField('titel', max_length=54, blank=True)
+    block_3_description = models.TextField('beschrijving', blank=True)
     block_3_image = models.ForeignKey(
         verbose_name='Afbeelding',
         to='wagtailimages.Image',
         on_delete=models.SET_NULL,
         null=True,
-        related_name='+'
+        related_name='+',
+        blank=True
     )
+
+    template = 'home/about_page.html'        
 
 AboutPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         MediaChooserPanel('video')
     ]),
     StreamFieldPanel('content'),
-    MultiFieldPanel([
-        FieldPanel('block_1_title', classname='col9'),
-        FieldPanel('block_1_description', classname='col9'),
-        ImageChooserPanel('block_1_image', classname='col6')
-    ], heading="Deel 1"),
-    MultiFieldPanel([
-        FieldPanel('block_2_title', classname='col9'),
-        FieldPanel('block_2_description', classname='col9'),
-        ImageChooserPanel('block_2_image', classname='col6')
-    ], heading="Deel 2"),
-    MultiFieldPanel([
-        FieldPanel('block_3_title', classname='col9'),
-        FieldPanel('block_3_description', classname='col9'),
-        ImageChooserPanel('block_3_image', classname='col6')
-    ], heading="Deel 3")
+    # MultiFieldPanel([
+    #     FieldPanel('block_1_title', classname='col9'),
+    #     FieldPanel('block_1_description', classname='col9'),
+    #     ImageChooserPanel('block_1_image', classname='col6')
+    # ], heading="Deel 1"),
+    # MultiFieldPanel([
+    #     FieldPanel('block_2_title', classname='col9'),
+    #     FieldPanel('block_2_description', classname='col9'),
+    #     ImageChooserPanel('block_2_image', classname='col6')
+    # ], heading="Deel 2"),
+    # MultiFieldPanel([
+    #     FieldPanel('block_3_title', classname='col9'),
+    #     FieldPanel('block_3_description', classname='col9'),
+    #     ImageChooserPanel('block_3_image', classname='col6')
+    # ], heading="Deel 3")
 ]
 
 class SessionsPage(Page):
