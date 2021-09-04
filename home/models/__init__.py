@@ -1,15 +1,17 @@
 from django.db import models
 
 from wagtail.core.models import Page, Orderable
-from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel
+from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
-from wagtail.core.fields import RichTextField
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
 from wagtailcaptcha.models import WagtailCaptchaForm
+
+from wagtailmedia.edit_handlers import MediaChooserPanel
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -22,6 +24,8 @@ from .snippets.video import Video
 from .snippets.testimonial import Testimonial
 from .snippets.session import Session
 from .snippets.press import Press
+
+from .blocks.about_stream_block import AboutPageStreamBlock
 
 class HomePagePartner(Orderable, Partner):
 
@@ -74,6 +78,15 @@ class HomePageVideo(Orderable, Video):
 
 class HomePage(Page):
 
+    video = models.ForeignKey(
+        'wagtailmedia.Media',
+        verbose_name='video',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     subtitle = RichTextField('Ondertitel', null=True, features=['bold', ])
     background_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -124,8 +137,6 @@ class HomePage(Page):
 
     # RichTextField('Beschrijving', blank=True, null=True, features=['h5', 'h6', 'bold', 'italic', 'link', 'hr', 'blockquote'])
 
-    # content = StreamField(HomePageStreamBlock(), null=True)
-
     # TESTIMONIALS
     testimonials_title = models.CharField('Getuigenissen', max_length=32, default='Testimonials')
     testimonials_subtitle = models.CharField('Ondertitel', max_length=64, default='from people participating in a DBS session')
@@ -147,6 +158,7 @@ HomePage.content_panels = [
             FieldPanel('title', classname='col8'),
             FieldPanel('subtitle', classname='col8'),
             ImageChooserPanel('background_image', classname='col10'),
+            MediaChooserPanel('video', classname='col10'),
             FieldPanel('funded', classname='col8'),
             ImageChooserPanel('funded_image', classname='col10')
         ],
@@ -214,6 +226,17 @@ HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPa
 
 class AboutPage(Page):
 
+    video = models.ForeignKey(
+        'wagtailmedia.Media',
+        verbose_name='video',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    content = StreamField(AboutPageStreamBlock(), null=True)
+
     block_1_title = models.CharField('titel', max_length=54)
     block_1_description = models.TextField('beschrijving')
     block_1_image = models.ForeignKey(
@@ -245,6 +268,10 @@ class AboutPage(Page):
     )
 
 AboutPage.content_panels = Page.content_panels + [
+    MultiFieldPanel([
+        MediaChooserPanel('video')
+    ]),
+    StreamFieldPanel('content'),
     MultiFieldPanel([
         FieldPanel('block_1_title', classname='col9'),
         FieldPanel('block_1_description', classname='col9'),
