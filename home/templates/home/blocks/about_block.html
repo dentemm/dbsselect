@@ -1,17 +1,54 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div id="what" class="container-fluid bg-primary px-0">
+<div id="what" class="container-fluid bg-{{ color }} px-0">
   <div class="container">
     <div class="row">
-      {% image page.what_image width-600 as bg_img %}
+  {% if position == 'left' %}
+
+    {% if value.gallery %} 
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
         <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
       </div>
+    {% elif value.image %}
+      {% image value.image width-600 as bg_img %}
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% else %}
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% endif %}
       <div class="col-md-6 text-white py-5 px-5">
-        <h2 class="font-weight-light">{{ page.what|upper|richtext }}</h2>
-        <p class="font-weight-lights">{{ page.what_info|richtext }}</p>
+        <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
+        <p class="font-weight-lights">{{ value.content }}</p>
         <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
       </div>
+
+  {% else %}
+
+      <div class="col-md-6 text-white py-5 px-5">
+        <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
+        <p class="font-weight-lights">{{ value.content }}</p>
+        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      </div>
+
+    {% if value.gallery %} 
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% elif value.image %}
+      {% image value.image width-600 as bg_img %}
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% else %}
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% endif %}
+
+  {% endif %}
     </div>
   </div>
 </div>

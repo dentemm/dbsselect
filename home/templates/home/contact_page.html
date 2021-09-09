@@ -1,12 +1,54 @@
 {% extends 'base.html' %}
 
+{% load wagtailcore_tags widget_tweaks %}
+
 {% block content %}
 
   <div class="container">
     {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
   </div>
 
+  {% if messages %}
+    <div class="messages mb-2">
+        {% for message in messages %}
+        <p class="eyebrow text-green">{{ message }}</p>
+        {% endfor %}
+    </div>
+  {% endif %}
+
+  <form action="{% pageurl page %}" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row {% if forloop.last %}mb-3{% else %}mb-1{% endif %}">
+        <div class="col">
+        {% if field.field.widget.input_type == 'select' or field.field.widget.input_type == 'checkbox' %}
+          <div class="row" style="padding: 0.9375rem; color: darkgray">
+            <div class="col-6 align-self-center">{{ field.label }}</div>
+            <div class="col-6">
+              {% render_field field class+="form-control form-control-minimal" placeholder=field.label %}
+            </div>
+          </div>
+        {% else  %}
+          {% render_field field class+="form-control form-control-minimal" placeholder=field.label rows=3 %} 
+        {% endif %}          
+        </div>
+      </div>
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <div class="text-danger">
+        {{ error }}
+      </div>
+    {% endfor %}
+  {% endif %}
+    {% endfor %}
+    <div class="form-row mt-3">
+      <div class="col">
+        <button type="submit" class="btn btn-primary px-5">Contact us</button>
+      </div>
+    </div>
+  </form>
+
   <section class="bg-secondary">
-    {% include 'home/partials/footer.html' with settings=settings %}
+    {% include 'home/partials/footer_new.html' with settings=settings %}
   </section>
 {% endblock %}
