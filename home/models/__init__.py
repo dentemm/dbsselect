@@ -324,6 +324,8 @@ class ContactPage(WagtailCaptchaForm, AbstractEmailForm):
         related_name='+'
     )
 
+    send_button = models.CharField(verbose_name='verzend text', default='Verzenden', max_length=28)
+
     thank_you_text = models.CharField(verbose_name='success message', blank=True, max_length=160)
 
     class Meta:
@@ -333,8 +335,9 @@ class ContactPage(WagtailCaptchaForm, AbstractEmailForm):
 ContactPage.content_panels = Page.content_panels + [
     MultiFieldPanel(
         [
-            FieldPanel('subject'),
-            FieldPanel('thank_you_text'),
+            FieldPanel('subject', classname='col8'),
+            FieldPanel('send_button', classname='col8'),
+            FieldPanel('thank_you_text', classname='col8'),
             FieldRowPanel([
                 FieldPanel('to_address', classname='col6'),
                 FieldPanel('from_address', classname='col6')

@@ -35,16 +35,16 @@
 
     {% if value.gallery %} 
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+        <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
       </div>
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+        <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
       </div>
     {% else %}
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+        <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
       </div>
     {% endif %}
 

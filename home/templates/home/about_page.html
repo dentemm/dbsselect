@@ -11,7 +11,7 @@
     {% for block in page.content %}
 
     <!--
-    {% cycle 'right' 'left' as position %}
+    {% cycle 'left' 'right' as position %}
     {% cycle 'primary' 'secondary' as color %}
     {% cycle 'white' '' 'white' as text_color %}
     {% cycle 'dark-blue' 'primary' 'primary' as btn_color %}
@@ -19,8 +19,11 @@
     {% include_block block with pos=position color=color text_color=text_color btn_color=btn_color %}
   {% endfor %}
 
+  <div class="my-5">
+  </div>
 
-  <section class="bg-secondary">
+
+  <section class="bg-secondary mt-5">
     {% include 'home/partials/footer_new.html' with settings=settings %}
   </section>
 {% endblock %}
