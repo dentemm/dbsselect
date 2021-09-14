@@ -6,13 +6,58 @@
   {% if position == 'left' %}
 
     {% if value.gallery %} 
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      <div class="col-md-6 bg-white px-0">        
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for img in value.gallery %}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first%}active{% endif %}"></li>
+          {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+          {% for img in value.gallery %}
+          {% image img height-450 as this_img %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ this_img.file.url }}" class="d-block w-100" alt="...">
+            </div>
+          {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
+
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      <div class="col-md-6 bg-white px-0">        
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for img in value.gallery %}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first%}active{% endif %}"></li>
+          {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+          {% for img in value.gallery %}
+          {% image img height-450 as this_img %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ this_img.file.url }}" class="d-block w-100" alt="...">
+            </div>
+          {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
     {% else %}
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
@@ -35,7 +80,7 @@
 
     {% if value.gallery %} 
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
+        <div style="height: 100%: width: 100%" class="triangle-secondary-left">gallery</div>
       </div>
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
