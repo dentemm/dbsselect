@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+  <div class="container">
+    {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-lg-4">
+        {% include 'home/partials/press.html' %}
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        {% include 'home/partials/press.html' %}
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        {% include 'home/partials/press.html' %}
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <section class="bg-secondary mt-5">
+    {% include 'home/partials/footer_new.html' with settings=settings %}
+  </section>
+{% endblock %}

@@ -5,34 +5,35 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 @register_snippet
-class Press(models.Model):
+class TeamMember(models.Model):
 
-    title = models.CharField(verbose_name='titel', max_length=128)
-    content = models.CharField(verbose_name='korte inhoud', max_length=512)
-    url = models.URLField(verbose_name='link')
+    name = models.CharField(verbose_name='Naam', max_length=64)
+    title = models.CharField(verbose_name='Titel', max_length=128)
+    text = models.CharField(verbose_name='Info', max_length=300)
     image = models.ForeignKey(
         'wagtailimages.Image',
+        verbose_name='Foto',
         on_delete=models.SET_NULL,
         related_name='+',
         null=True
     )
 
     def __str__(self):
-        return self.title
+        return self.name
 
     class Meta:
-        verbose_name = 'pers artikel'
-        verbose_name_plural = 'pers artikels'
+        verbose_name = 'Teamlid'
+        verbose_name_plural = 'Teamleden'
 
-Press.panels = [
+TeamMember.panels = [
   	MultiFieldPanel(
         [
+            FieldPanel('name', classname='col8'),
             FieldPanel('title', classname='col8'),
-            FieldPanel('content', classname='col8'),
-            FieldPanel('url', classname='col6'),
+            FieldPanel('text', classname='col8'),
             ImageChooserPanel('image', classname='col10'),
 
 		], 
-        heading='Pers artikel'
+        heading='Info'
 	  )  
 ]

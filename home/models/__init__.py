@@ -24,6 +24,7 @@ from .snippets.video import Video
 from .snippets.testimonial import Testimonial
 from .snippets.session import Session
 from .snippets.press import Press
+from .snippets.team import TeamMember
 
 from .blocks.about_stream_block import AboutPageStreamBlock
 
@@ -222,7 +223,7 @@ HomePage.content_panels = [
 ]
 
 HomePage.parent_page_types = []
-HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage']
+HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage']
 
 class AboutPage(Page):
 
@@ -293,6 +294,21 @@ AboutPage.content_panels = Page.content_panels + [
     #     ImageChooserPanel('block_3_image', classname='col6')
     # ], heading="Deel 3")
 ]
+
+class MediaPage(Page):
+
+    template = 'home/media_page.html'
+
+    def press_articles(self):
+        return Press.objects.all()
+
+MediaPage.content_panels = Page.content_panels + [
+
+]
+
+MediaPage.parent_page_types = ['home.HomePage']
+MediaPage.subpage_types = []
+
 
 class SessionsPage(Page):
 

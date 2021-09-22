@@ -34,6 +34,29 @@
 
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% else %}
+      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
+      </div>
+    {% endif %}
+      <div class="col-md-6 text-white py-5 px-5">
+        <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
+        <p class="font-weight-lights">{{ value.content }}</p>
+        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      </div>
+
+  {% else %}
+
+      <div class="col-md-6 text-white py-5 px-5">
+        <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
+        <p class="font-weight-lights">{{ value.content }}</p>
+        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      </div>
+
+    {% if value.gallery %} 
       <div class="col-md-6 bg-white px-0">        
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -58,29 +81,6 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-      </div>
-    {% else %}
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
-      </div>
-    {% endif %}
-      <div class="col-md-6 text-white py-5 px-5">
-        <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
-        <p class="font-weight-lights">{{ value.content }}</p>
-        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
-      </div>
-
-  {% else %}
-
-      <div class="col-md-6 text-white py-5 px-5">
-        <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
-        <p class="font-weight-lights">{{ value.content }}</p>
-        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
-      </div>
-
-    {% if value.gallery %} 
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
-        <div style="height: 100%: width: 100%" class="triangle-secondary-left">gallery</div>
       </div>
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
