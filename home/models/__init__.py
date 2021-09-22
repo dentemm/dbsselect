@@ -297,6 +297,9 @@ AboutPage.content_panels = Page.content_panels + [
 
 class MediaPage(Page):
 
+    media_title = models.CharField(verbose_name='titel media', default='Media', max_length=64)
+    press_title = models.CharField(verbose_name='titel pers', default='Press', max_length=64)
+
     template = 'home/media_page.html'
 
     def press_articles(self):
