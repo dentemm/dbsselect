@@ -1,11 +1,71 @@
 {% extends 'base.html' %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 
   <div class="container">
     {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
   </div>
+
+  <!-- info + image carousel -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+      </div>
+      <div class="col-lg-6">
+        <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">        
+            {% for item in page.gallery.all %}
+
+            {% image item.image fill-400x300 as tmp_img %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ tmp_img.file.url }}" class="d-block w-100" alt="...">
+            </div>
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carousel-gallery" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel-gallery" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- testimonials -->
+    <div class="container">
+
+      <div id="carousel-testimonials" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+
+          {% for item in page.testimonials.all %}
+          <blockquote class="blockquote text-center">
+            <p class="mb-0">{{ item.testimonial.content }}</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+
+          {% endfor %}
+
+        </div>
+        <a class="carousel-control-prev" href="#carousel-testimonials" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-testimonials" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="bg-secondary mt-5">
+    {% include 'home/partials/footer_new.html' with settings=settings %}
+  </section>
 
 {% endblock content %}

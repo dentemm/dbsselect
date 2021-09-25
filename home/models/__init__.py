@@ -47,6 +47,21 @@ HomePageTestimonial.panels = Person.panels + [
     FieldPanel('testimonial')
 ]
 
+class SessionsPageImage(Orderable, models.Model):
+
+    page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='gallery')
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='afbeelding',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+    )
+
+SessionsPageImage.panels = [
+    ImageChooserPanel('image')
+]
+
 class SessionsPageTestimonial(Orderable, models.Model):
     page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='testimonials')
     testimonial = models.ForeignKey(verbose_name='getuigenis', to=Testimonial, on_delete=models.CASCADE)
@@ -315,10 +330,25 @@ MediaPage.subpage_types = []
 
 class SessionsPage(Page):
 
-    # sessions = ParentalManyToManyField(verbose_name='sessies', to=Session, blank=True, null=True)
-    pass
+    subtitle = models.CharField(verbose_name='ondertitel', default='Info over sessies', max_length=64)
+    info = models.CharField(verbose_name='info tekst', blank=True, default='', max_length=264)
+
+    upcoming_sessions_title = models.CharField(verbose_name='Komende sessies titel', default='Komende sessies', max_length=64)
+    subscribe_button = models.CharField(verbose_name='Button tekst', default='Schrijf je in', max_length=64)
+
+    # def images(self):
+
+    #     print(self.gallery.all().count())
+
+    #     for item in self.gallery.all():
+    #         print(item)
+
+    #     return 
 
 SessionsPage.content_panels = Page.content_panels + [
+    MultiFieldPanel([
+        InlinePanel('gallery')
+    ], heading='afbeeldingen'),
     MultiFieldPanel([
         InlinePanel('testimonials')
     ], heading='Getuigenissen'),
