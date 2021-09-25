@@ -61,7 +61,7 @@ SessionsPageTestimonial.panels = [
 
 class SessionsPageSession(Orderable, models.Model):
     page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='sessions')
-    session = models.ForeignKey(verbose_name='sessie', to=Testimonial, on_delete=models.CASCADE)
+    session = models.ForeignKey(verbose_name='sessie', to=Session, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['sort_order']
