@@ -45,7 +45,9 @@
       <div class="col-md-6 text-white py-5 px-5">
         <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
         <p class="font-weight-lights">{{ value.content }}</p>
-        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      {% if page.subscription_link %}
+        <a href="{{ page.subscription_link }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.subscription_link_text|upper }}</b></a>
+      {% endif %}
       </div>
 
   {% else %}
@@ -53,7 +55,9 @@
       <div class="col-md-6 text-white py-5 px-5">
         <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
         <p class="font-weight-lights">{{ value.content }}</p>
-        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+      {% if page.subscription_link %}
+        <a href="{{ page.subscription_link }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.subscription_link_text|upper }}</b></a>
+      {% endif %}
       </div>
 
     {% if value.gallery %} 
