@@ -1,7 +1,7 @@
 from django.db import models
 
 from wagtail.core.models import Page, Orderable
-from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.fields import RichTextField, StreamField
@@ -120,6 +120,43 @@ class HomePage(Page):
         null=True,
     )
 
+    # CHILD PAGES
+    about_page = models.ForeignKey(
+        'home.AboutPage',
+        verbose_name='wat is DBS pagina',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    sessions_page = models.ForeignKey(
+        'wagtailcore.Page',
+        verbose_name='sessies pagina',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    media_page = models.ForeignKey(
+        'wagtailcore.Page',
+        verbose_name='media pagina',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    contact_page = models.ForeignKey(
+        'wagtailcore.Page',
+        verbose_name='contact pagina',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
     # SECTION 1
     what = RichTextField('Wat?', null=True, features=['bold', ])
     what_info = RichTextField('Info', null=True, features=['bold', 'link', 'hr'])
@@ -180,6 +217,13 @@ HomePage.content_panels = [
         ],
         heading='Algemene informatie'
     ),
+    # MultiFieldPanel([
+    #     PageChooserPanel('about_page', 'home.AboutPage'),
+    #     PageChooserPanel('sessions_page', 'home.SessionsPage'),
+    #     PageChooserPanel('media_page', 'home.MediaPage'),
+    #     PageChooserPanel('contact_page', 'home.ContactPage'),
+
+    # ], heading="Andere pagina's"),
     MultiFieldPanel(
         [
             FieldPanel('what', classname='col8'),
@@ -356,7 +400,7 @@ SessionsPage.content_panels = Page.content_panels + [
 class ContactPageFormField(AbstractFormField):
     page = ParentalKey('home.ContactPage', related_name='form_fields')
 
-class ContactPage(WagtailCaptchaForm, AbstractEmailForm):
+class ContactPage(AbstractEmailForm):
 
     directions_image = models.ForeignKey(
         'wagtailimages.Image',
