@@ -44,6 +44,10 @@ hr {
   align-items: flex-start;
 }
 
+.navbar-margin {
+  height: 5rem;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255,255,255,.8);
 }
@@ -59,9 +63,9 @@ hr {
 .video-background-holder {
   position: relative;
   background-color: black;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 9rem);
   min-height: 20rem;
-  max-height: 90vh;
+  max-height: 80vh;
   width: 100%;
   overflow: hidden;
 }
@@ -109,6 +113,10 @@ hr {
 
   .nav-item {
     margin-top: 1rem !important;
+  }
+
+  .navbar-margin {
+    height: 0rem !important;
   }
 
   .logo-wrapper img {

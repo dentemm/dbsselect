@@ -27,16 +27,20 @@
   <!-- End -->
 
   <!-- info + image carousel -->
-  <div class="container">
+  <div class="container pt-5">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-5">
+        <h2 class="text-primary font-weight-bold">{{ page.subtitle }}</h2>
+        <h5>{{ page.info }}</p>
+        <a href="{{ page.subscribe_link }}" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
+          <b>{{ page.subscribe_text|upper }}</b>
+        </a>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6 offset-lg-1">
         <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">        
+          <div class="carousel-inner my-5">        
             {% for item in page.gallery.all %}
-
-            {% image item.image fill-400x300 as tmp_img %}
+            {% image item.image fill-400x260 as tmp_img %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
               <img src="{{ tmp_img.file.url }}" class="d-block w-100" alt="...">
             </div>

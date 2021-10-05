@@ -370,6 +370,8 @@ class SessionsPage(Page):
 
     subtitle = models.CharField(verbose_name='ondertitel', default='Info over sessies', max_length=64)
     info = models.CharField(verbose_name='info tekst', blank=True, default='', max_length=264)
+    subscribe_link = models.URLField(verbose_name='inschrijf link', default='https://www.google.be')
+    subscribe_text = models.CharField(verbose_name='link test', default='Schrijf je hier in voor een sessie', max_length=64)
 
     upcoming_sessions_title = models.CharField(verbose_name='Komende sessies titel', default='Komende sessies', max_length=64)
     subscribe_button = models.CharField(verbose_name='Button tekst', default='Schrijf je in', max_length=64)
@@ -387,6 +389,12 @@ SessionsPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('video', classname='col8')
     ], heading='Video'),
+    MultiFieldPanel([
+        FieldPanel('subtitle', classname='col8'),
+        FieldPanel('info', classname='col8'),
+        FieldPanel('subscribe_link', classname='col8'),
+        FieldPanel('subscribe_text', classname='col8')
+    ], heading='Info'),
     MultiFieldPanel([
         InlinePanel('gallery')
     ], heading='afbeeldingen'),
