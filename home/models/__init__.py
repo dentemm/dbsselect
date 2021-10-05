@@ -376,6 +376,8 @@ class SessionsPage(Page):
     upcoming_sessions_title = models.CharField(verbose_name='Komende sessies titel', default='Komende sessies', max_length=64)
     subscribe_button = models.CharField(verbose_name='Button tekst', default='Schrijf je in', max_length=64)
 
+    subtitle_calendar = models.CharField(verbose_name='ondertitel', default='Aankomende sessies', max_length=64)
+
     # def images(self):
 
     #     print(self.gallery.all().count())
