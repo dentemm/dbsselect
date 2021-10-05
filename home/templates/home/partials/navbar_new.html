@@ -1,10 +1,11 @@
 {% load wagtailcore_tags custom_tags %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
   <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse bg-secondary" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse bg-dark" id="navbarSupportedContent">
     <ul class="navbar-nav pl-3">
       <li class="nav-item text-center active px-2 my-3">
       {% with count=page.get_children.count %}
@@ -34,6 +35,7 @@
       </select>
     </div>
   </div>
+</div>
 <script>
  /* $(function(){
       $('.selectpicker').selectpicker();

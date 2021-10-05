@@ -4,26 +4,24 @@
 
 {% block content %}
 
-  <div class="container">
-    {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
-  </div>
+  {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
 
-    {% for block in page.content %}
+  {% for block in page.content %}
 
-    <!--
-    {% cycle 'left' 'right' as position %}
-    {% cycle 'primary' 'secondary' as color %}
-    {% cycle 'white' '' 'white' as text_color %}
-    {% cycle 'dark-blue' 'primary' 'primary' as btn_color %}
-    -->
-    {% include_block block with pos=position color=color text_color=text_color btn_color=btn_color page=page %}
-  {% endfor %}
+  <!--
+  {% cycle 'left' 'right' as position %}
+  {% cycle 'primary' 'secondary' as color %}
+  {% cycle 'white' '' 'white' as text_color %}
+  {% cycle 'dark-blue' 'primary' 'primary' as btn_color %}
+  -->
+  {% include_block block with pos=position color=color text_color=text_color btn_color=btn_color page=page %}
+{% endfor %}
 
-  <div class="my-5" style="height: 5rem;">
-  </div>
+<div class="my-5" style="height: 5rem;">
+</div>
 
 
-  <section class="bg-secondary mt-5">
-    {% include 'home/partials/footer_new.html' with settings=settings %}
-  </section>
+<section class="bg-secondary mt-5">
+  {% include 'home/partials/footer_new.html' with settings=settings %}
+</section>
 {% endblock %}

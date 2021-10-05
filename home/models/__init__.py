@@ -366,6 +366,8 @@ MediaPage.subpage_types = []
 
 class SessionsPage(Page):
 
+    video = models.URLField(verbose_name='video link', default='https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4')
+
     subtitle = models.CharField(verbose_name='ondertitel', default='Info over sessies', max_length=64)
     info = models.CharField(verbose_name='info tekst', blank=True, default='', max_length=264)
 
@@ -382,6 +384,9 @@ class SessionsPage(Page):
     #     return 
 
 SessionsPage.content_panels = Page.content_panels + [
+    MultiFieldPanel([
+        FieldPanel('video', classname='col8')
+    ], heading='Video'),
     MultiFieldPanel([
         InlinePanel('gallery')
     ], heading='afbeeldingen'),
