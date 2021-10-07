@@ -25,6 +25,7 @@ from .snippets.testimonial import Testimonial
 from .snippets.session import Session
 from .snippets.press import Press
 from .snippets.team import TeamMember
+from .snippets.publication import Publication
 
 from .blocks.about_stream_block import AboutPageStreamBlock
 
@@ -282,7 +283,7 @@ HomePage.content_panels = [
 ]
 
 HomePage.parent_page_types = []
-HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage']
+HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage']
 
 class AboutPage(Page):
 
@@ -457,6 +458,56 @@ ContactPage.content_panels = Page.content_panels + [
 
 ContactPage.parent_page_types = ['home.HomePage']
 ContactPage.subpage_types = []
+
+class RelivePageImage(Orderable, models.Model):
+
+    page = ParentalKey('home.RelivePage', on_delete=models.CASCADE, related_name='gallery')
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='afbeelding',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+    )
+
+RelivePageImage.panels = [
+    ImageChooserPanel('image')
+]
+
+class RelivePage(Page):
+
+    subtitle = models.CharField(verbose_name='ondertitel', max_length=64, default='info over DBS')
+    download_text = models.CharField(verbose_name='Download tekst', max_length=64, default='Download de info brochure')
+    download_file = models.ForeignKey(
+        'wagtaildocs.Document',
+        verbose_name='Download bestand',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True
+    )
+    read_more = models.CharField(verbose_name='Lees meer', max_length=64)
+
+    def publications(self):
+        return Publication.objects.all()
+
+    class Meta:
+        verbose_name = 'Relive page'
+        verbose_name_plural = 'Relive pages'
+    
+RelivePage.content_panels = Page.content_panels + [
+    MultiFieldPanel([
+        FieldPanel('subtitle', classname='col8'),
+        FieldPanel('read_more', classname='col8'),
+        FieldPanel('download_text', classname='col8'),
+        DocumentChooserPanel('download_file', classname='col8'),
+    ], heading='Inhoud'),
+    MultiFieldPanel([
+        InlinePanel('gallery')
+    ], heading='afbeeldingen'),
+]
+
+RelivePage.parent_page_types = ['home.HomePage']
+RelivePage.subpage_types = []
 
 @register_setting
 class BDSSelectSettings(ClusterableModel, BaseSetting):

@@ -11,6 +11,7 @@ class Video(models.Model):
     title = models.CharField(verbose_name='Titel', max_length=64, null=True)
     link = models.URLField(verbose_name='Video link', null=True)
     description = models.TextField(verbose_name='Beschrijving', null=True, blank=True)
+    relive = models.BooleanField(verbose_name='Is herbeleef video?', default=False)
     video = models.ForeignKey(
         'wagtailmedia.Media',
         verbose_name='video',
@@ -33,6 +34,7 @@ Video.panels = [
         FieldPanel('title', classname='col12'),
         FieldPanel('link', classname='col12'),
 		FieldPanel('description', classname='col12'),
+        FieldPanel('relive', classname='col12')
         #MediaChooserPanel('video')
 
     ], heading='Video informatie')

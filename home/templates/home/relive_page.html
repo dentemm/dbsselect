@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+  {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
+
+  <!-- Background video -->
+  <div class="video-background-holder">
+    <div class="video-background-overlay"></div>
+      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="{{ page.video }}" type="video/mp4">
+      </video>
+    <div class="video-background-content container h-100">
+      <div class="d-flex h-100 text-center align-items-center">
+        {% comment %} <div class="w-100 text-white">
+          <h1 class="display-4">Bootstrap video background</h1>
+          <p class="lead mb-0">With HTML5 Video and Bootstrap 4</p>
+          <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+                      <u>Bootstrapious</u></a>
+          </p>
+        </div> {% endcomment %}
+      </div>
+    </div>
+  </div>
+  <!-- End -->
+
+  <!-- info + image carousel -->
+  <div class="container pt-5">
+    <div class="row">
+      <div class="col-lg-5">
+        <h2 class="text-primary font-weight-bold">{{ page.subtitle }}</h2>
+        <h5>{{ page.info }}</p>
+        <a href="{{ page.download_file }}" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
+          <b>{{ page.download_text|upper }}</b>
+        </a>
+      </div>
+      <div class="col-lg-6 offset-lg-1">
+        <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner my-5">        
+            {% for item in page.gallery.all %}
+            {% image item.image fill-400x260 as tmp_img %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ tmp_img.file.url }}" class="d-block w-100" alt="...">
+            </div>
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carousel-gallery" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel-gallery" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sessions list -->
+  <div class="container">
+
+    <h2 class="text-primary font-weight-bold mt-5 mb-3 ml-3">{{ page.subtitle_calendar }}</h2>
+  
+    <div class="owl-carousel owl-theme">
+    
+      <div class="card bg-primary text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay text-center">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+
+      <div class="card bg-dark text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay text-center">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+      <div class="card bg-dark text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+      <div class="card bg-dark text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+      <div class="card bg-dark text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+      <div class="card bg-dark text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+      <div class="card bg-dark text-white mx-3">
+        <img src="..." class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <section class="bg-secondary mt-5">
+    {% include 'home/partials/footer_new.html' with settings=settings %}
+  </section>
+
+{% endblock content %}
+
+{% block extra_js %}
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel();
+  });
+  </script>
+{% endblock %}
