@@ -29,16 +29,16 @@
   <!-- info + image carousel -->
   <div class="container pt-5">
     <div class="row">
-      <div class="col-lg-5">
+      <div class="col-lg-5 offset-lg-0 col-md-10 offset-md-1">
         <h2 class="text-primary font-weight-bold">{{ page.subtitle }}</h2>
         <h5>{{ page.info }}</p>
-        <a href="{{ page.download_file }}" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
+        <a href="{{ page.download_file }}" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
           <b>{{ page.download_text|upper }}</b>
         </a>
       </div>
-      <div class="col-lg-6 offset-lg-1">
+      <div class="col-lg-6 offset-lg-1 col-md-10 offset-md-1">
         <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner my-5">        
+          <div class="carousel-inner mb-5">        
             {% for item in page.gallery.all %}
             {% image item.image fill-400x260 as tmp_img %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -61,71 +61,22 @@
 
   <!-- sessions list -->
   <div class="container">
-
-    <h2 class="text-primary font-weight-bold mt-5 mb-3 ml-3">{{ page.subtitle_calendar }}</h2>
-  
+    <h2 class="text-primary font-weight-bold mt-5 mb-3 ml-3">{{ page.subtitle_publication }}</h2>
     <div class="owl-carousel owl-theme">
-    
+
+    {% for item in page.publications %}
+      {% image item.image fill-300x300 as this_img %}
       <div class="card bg-primary text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
+        <img src="{{ this_img.file.url }}" class="card-img" alt="{{ this_img.file }}">
+        <div class="card-img-overlay text-center img-darkened d-flex flex-column justify-content-between" style="background-color: rgba(black, 0.9);">
+          <h3 class="card-title font-weight-bold">{{ item }}</h3>
+          <a href="{{ item.link }}" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
+            <b>{{ page.read_more|upper }}</b>
+          </a>
         </div>
       </div>
-
-      <div class="card bg-dark text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay text-center">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-      <div class="card bg-dark text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-      <div class="card bg-dark text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-      <div class="card bg-dark text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-      <div class="card bg-dark text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-      <div class="card bg-dark text-white mx-3">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-
+    {% endfor %}
     </div>
-
   </div>
 
   <section class="bg-secondary mt-5">
@@ -137,7 +88,24 @@
 {% block extra_js %}
   <script type="text/javascript">
   $(document).ready(function(){
-    $('.owl-carousel').owlCarousel();
+    $('.owl-carousel').owlCarousel({
+      items: 4,
+      loop: true,
+      autoplay: true,
+      // nav: true,
+      autoplayTimeout: 3500,
+      responsive: {
+        0: {
+          items: 2
+        },
+        600: {
+          items: 3,
+        },
+        950: {
+          item: 4
+        }
+      }
+    });
   });
   </script>
 {% endblock %}

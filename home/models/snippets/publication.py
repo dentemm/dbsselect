@@ -22,8 +22,8 @@ class Publication(models.Model):
     return f'{self.name}'
 
   class Meta:
-    verbose_name = 'Pulicatie'
-    verbose_name_plural = 'Pulicaties'
+    verbose_name = 'Publicatie'
+    verbose_name_plural = 'Publicaties'
 
 Publication.panels = [
   MultiFieldPanel([

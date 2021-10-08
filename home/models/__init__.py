@@ -477,6 +477,8 @@ RelivePageImage.panels = [
 class RelivePage(Page):
 
     subtitle = models.CharField(verbose_name='ondertitel', max_length=64, default='info over DBS')
+    info = models.CharField(verbose_name='info tekst', max_length=512, default='Lorem ipsum')
+
     download_text = models.CharField(verbose_name='Download tekst', max_length=64, default='Download de info brochure')
     download_file = models.ForeignKey(
         'wagtaildocs.Document',
@@ -486,6 +488,9 @@ class RelivePage(Page):
         null=True
     )
     read_more = models.CharField(verbose_name='Lees meer', max_length=64)
+
+    subtitle_relive = models.CharField(verbose_name='herbeleef titel', max_length=64, default='Herbeleef de DBS rondleiding')
+    subtitle_publication = models.CharField(verbose_name='publicaties titel', max_length=64, default='Externe studies')
 
     def publications(self):
         return Publication.objects.all()
@@ -497,6 +502,9 @@ class RelivePage(Page):
 RelivePage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('subtitle', classname='col8'),
+        FieldPanel('subtitle_relive', classname='col8'),
+        FieldPanel('subtitle_publication', classname='col8'),
+        FieldPanel('info', classname='col8'),
         FieldPanel('read_more', classname='col8'),
         FieldPanel('download_text', classname='col8'),
         DocumentChooserPanel('download_file', classname='col8'),

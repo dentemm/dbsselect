@@ -101,6 +101,10 @@ hr {
   z-index: 1;
 }
 
+.img-darkened {
+  background-color: #0007;
+}
+
 @media (max-width: 992px) {
 
   h1 {
