@@ -379,15 +379,6 @@ class SessionsPage(Page):
 
     subtitle_calendar = models.CharField(verbose_name='ondertitel', default='Aankomende sessies', max_length=64)
 
-    # def images(self):
-
-    #     print(self.gallery.all().count())
-
-    #     for item in self.gallery.all():
-    #         print(item)
-
-    #     return 
-
 SessionsPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('video', classname='col8')
