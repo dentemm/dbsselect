@@ -27,9 +27,6 @@ django-filter==2.4.0
 django-haystack==2.8.1
 django-modelcluster==5.2
 django-modeltranslation==0.12
-django-oscar==2.0.4
-django-oscar-api==2.0.2
-django-oscar-promotions==1.0.0b1
 django-phonenumber-field==2.0.0
 django-recaptcha==2.0.6
 django-storages==1.8
