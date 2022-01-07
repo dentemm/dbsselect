@@ -14,7 +14,6 @@ from wagtailcaptcha.models import WagtailCaptchaForm
 from wagtailmedia.edit_handlers import MediaChooserPanel
 
 from modelcluster.fields import ParentalKey
-from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.models import ClusterableModel
 
 from .snippets.partner import Partner
@@ -207,17 +206,14 @@ class HomePage(Page):
     videos_discription = models.CharField('Ondertitel', max_length=128, default="", blank=True)
 
 HomePage.content_panels = [
-    MultiFieldPanel(
-        [
-            FieldPanel('title', classname='col8'),
-            FieldPanel('subtitle', classname='col8'),
-            ImageChooserPanel('background_image', classname='col10'),
-            MediaChooserPanel('video', classname='col10'),
-            FieldPanel('funded', classname='col8'),
-            ImageChooserPanel('funded_image', classname='col10')
-        ],
-        heading='Algemene informatie'
-    ),
+    MultiFieldPanel([
+        FieldPanel('title', classname='col8'),
+        FieldPanel('subtitle', classname='col8'),
+        ImageChooserPanel('background_image', classname='col10'),
+        MediaChooserPanel('video', classname='col10'),
+        FieldPanel('funded', classname='col8'),
+        ImageChooserPanel('funded_image', classname='col10')
+    ], heading='Algemene informatie'),
     # MultiFieldPanel([
     #     PageChooserPanel('about_page', 'home.AboutPage'),
     #     PageChooserPanel('sessions_page', 'home.SessionsPage'),
@@ -225,61 +221,38 @@ HomePage.content_panels = [
     #     PageChooserPanel('contact_page', 'home.ContactPage'),
 
     # ], heading="Andere pagina's"),
-    MultiFieldPanel(
-        [
-            FieldPanel('what', classname='col8'),
-            FieldPanel('what_info', classname='col8'),
-            FieldPanel('download_text', classname='col8'),
-            DocumentChooserPanel('what_file', classname='col8'),
-            ImageChooserPanel('what_image', classname='col8')
-        ],
-        heading='Sectie 1: wat is DBS?',
-        classname='collapsible collapsed'
-    ),
-    MultiFieldPanel(
-        [
-            FieldPanel('sessions', classname='col8'),
-            FieldPanel('sessions_info', classname='col8'),
-            FieldPanel('data_text', classname='col8'),
-            FieldPanel('data_link', classname='col8'),
-            ImageChooserPanel('sessions_image', classname='col8')
-        ],
-        heading='Sectie 1: DBS Select sessies',
-        classname='collapsible collapsed'
-    ),
-    MultiFieldPanel(
-        [
-            FieldPanel('testimonials_title', classname='col8'),
-            FieldPanel('testimonials_title', classname='col8'),
-            InlinePanel('testimonials')
-        ],
-        heading='Sectie 2: Getuigenissen',
-        classname='collapsible collapsed'
-    ), 
-    MultiFieldPanel(
-        [
-            FieldPanel('movie_title', classname='col8'),
-            FieldPanel('movie_link', classname='col8'),
-        ],
-        heading='Sectie 3: DBS Select movie',
-        classname='collapsible collapsed'
-    ), 
+    MultiFieldPanel([
+        FieldPanel('what', classname='col8'),
+        FieldPanel('what_info', classname='col8'),
+        FieldPanel('download_text', classname='col8'),
+        DocumentChooserPanel('what_file', classname='col8'),
+        ImageChooserPanel('what_image', classname='col8')
+    ], heading='Sectie 1: wat is DBS?', classname='collapsible collapsed'),
+    MultiFieldPanel([
+        FieldPanel('sessions', classname='col8'),
+        FieldPanel('sessions_info', classname='col8'),
+        FieldPanel('data_text', classname='col8'),
+        FieldPanel('data_link', classname='col8'),
+        ImageChooserPanel('sessions_image', classname='col8')
+    ], heading='Sectie 1: DBS Select sessies', classname='collapsible collapsed'),
+    MultiFieldPanel([
+        FieldPanel('testimonials_title', classname='col8'),
+        FieldPanel('testimonials_title', classname='col8'),
+        InlinePanel('testimonials')
+    ], heading='Sectie 2: Getuigenissen', classname='collapsible collapsed'), 
+    MultiFieldPanel([
+        FieldPanel('movie_title', classname='col8'),
+        FieldPanel('movie_link', classname='col8'),
+    ], heading='Sectie 3: DBS Select movie', classname='collapsible collapsed'), 
     MultiFieldPanel([
         FieldPanel('videos_title', classname='col8'),
         FieldPanel('videos_discription', classname='col8'),
         InlinePanel('videos')
-    ], 
-        heading='Videos',
-        classname='collapsible collapsed'
-    ),
-    MultiFieldPanel(
-        [
-            FieldPanel('partners_title', classname='col8'),
-            InlinePanel('partners')
-        ],
-        heading='Partners',
-        classname='collapsible collapsed'
-    ), 
+    ], heading='Videos', classname='collapsible collapsed'),
+    MultiFieldPanel([
+        FieldPanel('partners_title', classname='col8'),
+        InlinePanel('partners')
+    ], heading='Partners', classname='collapsible collapsed'), 
 ]
 
 HomePage.parent_page_types = []
@@ -357,9 +330,7 @@ class MediaPage(Page):
     def press_articles(self):
         return Press.objects.all()
 
-MediaPage.content_panels = Page.content_panels + [
-
-]
+MediaPage.content_panels = Page.content_panels + []
 
 MediaPage.parent_page_types = ['home.HomePage']
 MediaPage.subpage_types = []
@@ -400,9 +371,10 @@ SessionsPage.content_panels = Page.content_panels + [
     ], heading='Sessies'),   
 ]
 
-# HomePage.settings_panels = Page.settings_panels + [
-#     FieldPanel('locale')
-# ]
+class ContactPageTeamMember(Orderable, TeamMember):
+    page = ParentalKey('home.ContactPage', on_delete=models.CASCADE, related_name='team')
+
+ContactPageTeamMember.panels = TeamMember.panels
 
 class ContactPageFormField(AbstractFormField):
     page = ParentalKey('home.ContactPage', related_name='form_fields')
@@ -425,26 +397,24 @@ class ContactPage(AbstractEmailForm):
         verbose_name_plural = 'Contact pages'
 
 ContactPage.content_panels = Page.content_panels + [
-    MultiFieldPanel(
-        [
-            FieldPanel('subject', classname='col8'),
-            FieldPanel('send_button', classname='col8'),
-            FieldPanel('thank_you_text', classname='col8'),
-            FieldRowPanel([
-                FieldPanel('to_address', classname='col6'),
-                FieldPanel('from_address', classname='col6')
-            ])
-        ],
-        heading='Form configuration',
-        classname='collapsible collapsed'
-    ),
-    MultiFieldPanel(
-        [
-            InlinePanel('form_fields', label='Form fields'),
-        ],
-        heading='Form fields',
-        classname='collapsible collapsed'
-    )
+    MultiFieldPanel([
+        ImageChooserPanel('directions_image')
+    ]),
+    MultiFieldPanel([
+        FieldPanel('subject', classname='col8'),
+        FieldPanel('send_button', classname='col8'),
+        FieldPanel('thank_you_text', classname='col8'),
+        FieldRowPanel([
+            FieldPanel('to_address', classname='col6'),
+            FieldPanel('from_address', classname='col6')
+        ])
+    ], heading='Form configuration', classname='collapsible collapsed'),
+    MultiFieldPanel([
+        InlinePanel('form_fields', label='Form fields'),
+    ], heading='Form fields', classname='collapsible collapsed'),
+    MultiFieldPanel([
+        InlinePanel('team', label='Team members'),
+    ], heading='Team members', classname='collapsible collapsed')
 ]
 
 ContactPage.parent_page_types = ['home.HomePage']
@@ -559,23 +529,17 @@ class BDSSelectSettings(ClusterableModel, BaseSetting):
         verbose_name = 'DBS Select data'
 
 BDSSelectSettings.panels = [
-    MultiFieldPanel(
-        [
-            FieldRowPanel([
-                FieldPanel('email', classname='col6'),
-            ]),
-            FieldRowPanel([
-                FieldPanel('location', classname='col6')
-            ])
-        ], 
-        heading='Algemene informatie'
-    ),
+    MultiFieldPanel([
+        FieldRowPanel([
+            FieldPanel('email', classname='col6'),
+        ]),
+        FieldRowPanel([
+            FieldPanel('location', classname='col6')
+        ])
+    ], heading='Algemene informatie'),
     MultiFieldPanel([
         ImageChooserPanel('logo'),
         ImageChooserPanel('logo_white'),
         ImageChooserPanel('favicon')
-    ], 
-        heading='Logos',
-        classname='collapsible collapsed'
-    ),
+    ], heading='Logos', classname='collapsible collapsed'),
 ]

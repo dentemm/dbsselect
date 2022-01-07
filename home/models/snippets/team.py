@@ -26,14 +26,10 @@ class TeamMember(models.Model):
         verbose_name_plural = 'Teamleden'
 
 TeamMember.panels = [
-  	MultiFieldPanel(
-        [
-            FieldPanel('name', classname='col8'),
-            FieldPanel('title', classname='col8'),
-            FieldPanel('text', classname='col8'),
-            ImageChooserPanel('image', classname='col10'),
-
-		], 
-        heading='Info'
-	  )  
+  	MultiFieldPanel([
+        FieldPanel('name', classname='col8'),
+        FieldPanel('title', classname='col8'),
+        FieldPanel('text', classname='col8'),
+        ImageChooserPanel('image', classname='col10'),
+    ], heading='Info')  
 ]

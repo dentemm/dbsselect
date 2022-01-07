@@ -1,12 +1,15 @@
 from wagtail.core.blocks import CharBlock, TextBlock, StructBlock, ListBlock
 from wagtail.images.blocks import ImageChooserBlock
 
+from wagtailmedia.blocks import VideoChooserBlock
+
 class AboutBlock(StructBlock):
 
   title = CharBlock(label='titel', max_length=64)
   content = TextBlock(label='tekst', max_length=512)
   image = ImageChooserBlock(label='afbeelding', required=False)
   gallery = ListBlock(ImageChooserBlock(), label='foto gallerij', required=False)
+  video = VideoChooserBlock(label='video', required=False)
 
   class Meta:
     template = 'home/blocks/about_block.html'

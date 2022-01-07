@@ -4,14 +4,12 @@
   src: local('temm'),
        url('../fonts/temm.otf') format("opentype");
 }
-
 @font-face {
   font-family: 'GothamLight';
   font-weight: 300;
   src: local('temmlight'),
        url('../fonts/temmlight.otf') format("opentype");
 }
-
 @font-face {
   font-family: 'GothamBold';
   font-weight: 600;
@@ -38,6 +36,11 @@ b {
 
 hr {
   border-top: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+video.about {
+  width: 100%;
+  object-fit: contain;
 }
 
 .navbar {

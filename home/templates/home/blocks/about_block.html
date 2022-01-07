@@ -3,9 +3,28 @@
 <div id="what" class="container-fluid bg-{{ color }} px-0">
   <div class="container">
     <div class="row">
+
+  <!-- LEFT POSITION (text right) -->
   {% if position == 'left' %}
 
-    {% if value.gallery %} 
+    {% if value.video %}
+      {% with value.video.thumbnail as thumb %}
+    <div class="col-md-6 bg-white px-0">
+      <video 
+        class="about" 
+        {% if thumb %}poster="{{ value.video.thumbnail.url }}"{% endif %}
+        controls
+        {% if not thumb %}loop autoplay{% endif %}
+      >
+        <source
+          src="{{ value.video.file.url }}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+      {% endwith %}
+
+    {% elif value.gallery %} 
       <div class="col-md-6 bg-white px-0">        
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -15,7 +34,7 @@
           </ol>
           <div class="carousel-inner">
           {% for img in value.gallery %}
-          {% image img height-450 as this_img %}
+          {% image img fill-600x450 as this_img %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
               <img src="{{ this_img.file.url }}" class="d-block w-100" alt="...">
             </div>
@@ -50,6 +69,7 @@
       {% endif %}
       </div>
 
+  <!-- RIGHT POSITION (text left) -->
   {% else %}
 
       <div class="col-md-6 text-white py-5 px-5">
@@ -60,7 +80,24 @@
       {% endif %}
       </div>
 
-    {% if value.gallery %} 
+    {% if value.video %}
+      {% with value.video.thumbnail as thumb %}
+    <div class="col-md-6 bg-white px-0">
+      <video 
+        class="about" 
+        {% if thumb %}poster="{{ value.video.thumbnail.url }}"{% endif %}
+        controls
+        {% if not thumb %}loop autoplay{% endif %}
+      >
+        <source
+          src="{{ value.video.file.url }}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+      {% endwith %}
+
+    {% elif value.gallery %} 
       <div class="col-md-6 bg-white px-0">        
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -70,7 +107,7 @@
           </ol>
           <div class="carousel-inner">
           {% for img in value.gallery %}
-          {% image img height-450 as this_img %}
+          {% image img fill-600x450 as this_img %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
               <img src="{{ this_img.file.url }}" class="d-block w-100" alt="...">
             </div>
