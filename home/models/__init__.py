@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 from wagtail.core.models import Page, Orderable
@@ -8,8 +10,6 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
-
-from wagtailcaptcha.models import WagtailCaptchaForm
 
 from wagtailmedia.edit_handlers import MediaChooserPanel
 
@@ -335,7 +335,6 @@ MediaPage.content_panels = Page.content_panels + []
 MediaPage.parent_page_types = ['home.HomePage']
 MediaPage.subpage_types = []
 
-
 class SessionsPage(Page):
 
     video = models.URLField(verbose_name='video link', default='https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4')
@@ -350,6 +349,13 @@ class SessionsPage(Page):
 
     subtitle_calendar = models.CharField(verbose_name='ondertitel', default='Aankomende sessies', max_length=64)
 
+    def upcoming_sessions(self):
+
+        reference = datetime.today()
+        filtered = self.sessions.filter(session__date__gte=reference)
+
+        return filtered
+
 SessionsPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('video', classname='col8')
@@ -358,7 +364,8 @@ SessionsPage.content_panels = Page.content_panels + [
         FieldPanel('subtitle', classname='col8'),
         FieldPanel('info', classname='col8'),
         FieldPanel('subscribe_link', classname='col8'),
-        FieldPanel('subscribe_text', classname='col8')
+        FieldPanel('subscribe_text', classname='col8'),
+        FieldPanel('subtitle_calendar', classname='col8')
     ], heading='Info'),
     MultiFieldPanel([
         InlinePanel('gallery')

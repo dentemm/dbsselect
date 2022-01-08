@@ -117,14 +117,15 @@
     <h2 class="text-primary font-weight-bold mt-5 mb-3 ml-3">{{ page.subtitle_calendar }}</h2>
     <div class="owl-carousel owl-theme">
 
-    {% for item in page.sessions.all %}
+    {% for item in page.upcoming_sessions %}
+    {% comment %} {% for item in page.sessions.all %} {% endcomment %}
       {% image item.session.image fill-300x300 as this_img %}
       <div class="card bg-primary text-white mx-3">
         <img src="{{ this_img.file.url }}" class="card-img" alt="{{ this_img.file }}">
         <div class="card-img-overlay text-center img-darkened d-flex flex-column justify-content-between" style="background-color: rgba(black, 0.9);">
-          <h3 class="card-title font-weight-bold">{{ item.session.date }}</h3>
+          <h3 class="card-title font-weight-bold">{{ item.session.date|date:'l M j' }}</h3>
           <a href="{{ item.session.link }}" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
-            <b>{{ page.read_more|upper }}</b>
+            <b>{{ page.subscribe_text|upper }}</b>
           </a>
         </div>
       </div>
@@ -144,10 +145,10 @@
   $(document).ready(function(){
     $('.owl-carousel').owlCarousel({
       items: 4,
-      loop: true,
-      autoplay: true,
+      loop: false,
+      autoplay: false,
       // nav: true,
-      autoplayTimeout: 3500,
+      // autoplayTimeout: 3500,
       responsive: {
         0: {
           items: 2
