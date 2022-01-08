@@ -24,6 +24,7 @@ class Session(models.Model):
   class Meta:
     verbose_name = 'Sessie'
     verbose_name_plural = 'Sessies'
+    ordering = ['date']
 
 Session.panels = [
   MultiFieldPanel([

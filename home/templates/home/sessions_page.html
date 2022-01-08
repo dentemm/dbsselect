@@ -32,7 +32,7 @@
       <div class="col-lg-5">
         <h2 class="text-primary font-weight-bold">{{ page.subtitle }}</h2>
         <h5>{{ page.info }}</p>
-        <a href="{{ page.subscribe_link }}" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
+        <a href="#upcoming" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
           <b>{{ page.subscribe_text|upper }}</b>
         </a>
       </div>
@@ -74,18 +74,14 @@
       </div>
       <div class="row">
         <div class="offset-lg-3 col-lg-6">
-
           <div id="carousel-testimonials" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
-
               {% for item in page.testimonials.all %}
               <blockquote class="blockquote">
                 <h3 class="mb-0 text-center">{{ item.testimonial.content }}</h3>
                 <footer class="blockquote-footer mt-4 text-right"><span class="font-weight-bold">{{ item.testimonial.person }}</span><br/> <cite title="Source Title" class="font-italic">{{ item.testimonial.person.info }}</cite></footer>
               </blockquote>
-
               {% endfor %}
-
             </div>
             <a class="carousel-control-prev" href="#carousel-testimonials" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -96,10 +92,8 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 
@@ -113,17 +107,16 @@
   </div>
 
   <!-- sessions list -->
-  <div class="container">
+  <div class="container" id="upcoming">
     <h2 class="text-primary font-weight-bold mt-5 mb-3 ml-3">{{ page.subtitle_calendar }}</h2>
     <div class="owl-carousel owl-theme">
 
     {% for item in page.upcoming_sessions %}
-    {% comment %} {% for item in page.sessions.all %} {% endcomment %}
-      {% image item.session.image fill-300x300 as this_img %}
+      {% image item.image fill-300x300 as this_img %}
       <div class="card bg-primary text-white mx-3">
         <img src="{{ this_img.file.url }}" class="card-img" alt="{{ this_img.file }}">
         <div class="card-img-overlay text-center img-darkened d-flex flex-column justify-content-between" style="background-color: rgba(black, 0.9);">
-          <h3 class="card-title font-weight-bold">{{ item.session.date|date:'l M j' }}</h3>
+          <h3 class="card-title font-weight-bold">{{ item.date|date:'l M j' }}</h3>
           <a href="{{ item.session.link }}" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
             <b>{{ page.subscribe_text|upper }}</b>
           </a>
@@ -147,8 +140,6 @@
       items: 4,
       loop: false,
       autoplay: false,
-      // nav: true,
-      // autoplayTimeout: 3500,
       responsive: {
         0: {
           items: 2

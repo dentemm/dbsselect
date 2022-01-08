@@ -2,9 +2,7 @@
 
 <div class="row">
 {% for item in page.team.all %}
-
   {% image item.image fill-150x150 as img %}
-
   <div class="col">
     <div class="card text-center">
       <div class="card-header">
@@ -17,6 +15,5 @@
       </div>
     </div>
   </div>
-
 {% endfor %}
 </div>

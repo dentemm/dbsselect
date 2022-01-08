@@ -352,7 +352,9 @@ class SessionsPage(Page):
     def upcoming_sessions(self):
 
         reference = datetime.today()
-        filtered = self.sessions.filter(session__date__gte=reference)
+        filtered = Session.objects.filter(date__gte=reference)
+
+        print(filtered)
 
         return filtered
 
@@ -373,9 +375,9 @@ SessionsPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         InlinePanel('testimonials')
     ], heading='Getuigenissen'),
-     MultiFieldPanel([
-        InlinePanel('sessions')
-    ], heading='Sessies'),   
+    #  MultiFieldPanel([
+    #     InlinePanel('sessions')
+    # ], heading='Sessies'),   
 ]
 
 class ContactPageTeamMember(Orderable, TeamMember):
