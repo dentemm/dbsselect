@@ -74,18 +74,6 @@ SessionsPageTestimonial.panels = [
     SnippetChooserPanel('testimonial')
 ]
 
-class SessionsPageSession(Orderable, models.Model):
-    page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='sessions')
-    session = models.ForeignKey(verbose_name='sessie', to=Session, on_delete=models.CASCADE)
-
-    class Meta:
-        ordering = ['sort_order']
-        unique_together = ('page', 'session')
-
-SessionsPageSession.panels = [
-    SnippetChooserPanel('session')
-]
-
 class HomePageVideo(Orderable, Video):
     page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='videos')
     
@@ -352,11 +340,7 @@ class SessionsPage(Page):
     def upcoming_sessions(self):
 
         reference = datetime.today()
-        filtered = Session.objects.filter(date__gte=reference)
-
-        print(filtered)
-
-        return filtered
+        return Session.objects.filter(date__gte=reference)
 
 SessionsPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
@@ -374,10 +358,7 @@ SessionsPage.content_panels = Page.content_panels + [
     ], heading='afbeeldingen'),
     MultiFieldPanel([
         InlinePanel('testimonials')
-    ], heading='Getuigenissen'),
-    #  MultiFieldPanel([
-    #     InlinePanel('sessions')
-    # ], heading='Sessies'),   
+    ], heading='Getuigenissen'), 
 ]
 
 class ContactPageTeamMember(Orderable, TeamMember):
