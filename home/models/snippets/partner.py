@@ -30,14 +30,11 @@ class Partner(models.Model):
         verbose_name_plural = 'Partners'
 
 Partner.panels = [
-  	MultiFieldPanel(
-        [
-            FieldPanel('name', classname='col8'),
-            FieldPanel('url', classname='col8'),
-            ImageChooserPanel('logo', classname='col10'),
-            FieldPanel('description', classname='col10')
-
-		], 
-        heading='Partner informatie'
-	)  
+  	MultiFieldPanel([
+        FieldPanel('name', classname='col8'),
+        FieldPanel('url', classname='col8'),
+        ImageChooserPanel('logo', classname='col10'),
+        FieldPanel('description', classname='col10'),
+        FieldPanel('partner_type', classname='col8')
+    ], heading='Partner informatie')  
 ]

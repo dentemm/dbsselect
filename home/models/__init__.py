@@ -35,6 +35,23 @@ class HomePagePartner(Orderable, Partner):
     class Meta:
         ordering = ['sort_order']
 
+class HomePageImage(Orderable, models.Model):
+
+    page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='images')
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name='afbeelding',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+    )
+
+HomePageImage.panels = [
+    MultiFieldPanel([
+        ImageChooserPanel('image')
+    ], heading='Afbeelding')
+]
+
 class HomePageTestimonial(Orderable, Person):
 
     page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='testimonials')
@@ -70,6 +87,8 @@ class HomePageVideo(Orderable, Video):
 
 class HomePage(Page):
 
+    # template = 'home/home_new.html'
+
     video = models.ForeignKey(
         'wagtailmedia.Media',
         verbose_name='video',
@@ -95,6 +114,9 @@ class HomePage(Page):
         related_name='+',
         null=True,
     )
+
+    # NEW PAGE
+    info_text = models.TextField('DBS info', default='', null=True)
 
     # CHILD PAGES
     about_page = models.ForeignKey(
@@ -177,6 +199,12 @@ class HomePage(Page):
     # PARTNERS
     partners_title = models.CharField('Partners', max_length=32, default='Partners')
 
+    def project_partners(self):
+        return Partner.objects.filter(partner_type=1)
+
+    def supporting_partners(self):
+        return Partner.objects.filter(partner_type=2)
+
     # VIDEOS
     videos_title = models.CharField('Videos', max_length=32, default='More videos')
     videos_discription = models.CharField('Ondertitel', max_length=128, default="", blank=True)
@@ -197,6 +225,12 @@ HomePage.content_panels = [
     #     PageChooserPanel('contact_page', 'home.ContactPage'),
 
     # ], heading="Andere pagina's"),
+    MultiFieldPanel([
+        FieldPanel('info_text', classname='col10'),
+    ], heading="New website", classname='collapsible collapsed'),
+    MultiFieldPanel([
+        InlinePanel('images'),
+    ], heading="Afbeeldingen", classname='collapsible collapsed'),
     MultiFieldPanel([
         FieldPanel('what', classname='col8'),
         FieldPanel('what_info', classname='col8'),

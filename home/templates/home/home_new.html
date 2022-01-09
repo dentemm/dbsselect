@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% load wagtailimages_tags %}
+
+{% image settings.home.BDSSelectSettings.logo_white width-200 as logo %}
+
+{% block extra_head %}
+  {% image settings.home.BDSSelectSettings.favicon original as favicon %}
+  <link rel="icon" href="{{ favicon.file.url }}" type="image/png">
+{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+{% include 'home/partials/intro.html' with page=page settings=settings %}
+
+{% include 'home/partials/dbs_select.html' %}
+<section>
+  {% include 'home/partials/project_partners.html' %}
+</section>
+<section>
+  {% include 'home/partials/supporting_partners.html' %}
+</section>
+<section class="bg-secondary">
+  {% include 'home/partials/footer.html' with settings=settings %}
+</section>
+
+{% endblock content %}
