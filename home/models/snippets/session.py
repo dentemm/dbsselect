@@ -10,7 +10,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 class Session(models.Model):
 
   date = models.DateField(verbose_name='Datum', default=date.today)
-  link = models.URLField(verbose_name='URL', max_length=64)
+  link = models.URLField(verbose_name='URL', max_length=200)
   image = models.ForeignKey(
     'wagtailimages.Image',
     on_delete=models.SET_NULL,
