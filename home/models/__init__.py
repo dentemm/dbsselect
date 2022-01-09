@@ -62,18 +62,6 @@ SessionsPageImage.panels = [
     ImageChooserPanel('image')
 ]
 
-class SessionsPageTestimonial(Orderable, models.Model):
-    page = ParentalKey('home.SessionsPage', on_delete=models.CASCADE, related_name='testimonials')
-    testimonial = models.ForeignKey(verbose_name='getuigenis', to=Testimonial, on_delete=models.CASCADE)
-
-    class Meta:
-        ordering = ['sort_order']
-        unique_together = ('page', 'testimonial')
-
-SessionsPageTestimonial.panels = [
-    SnippetChooserPanel('testimonial')
-]
-
 class HomePageVideo(Orderable, Video):
     page = ParentalKey('home.HomePage', on_delete=models.CASCADE, related_name='videos')
     
@@ -328,7 +316,7 @@ class SessionsPage(Page):
     video = models.URLField(verbose_name='video link', default='https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4')
 
     subtitle = models.CharField(verbose_name='ondertitel', default='Info over sessies', max_length=64)
-    info = models.CharField(verbose_name='info tekst', blank=True, default='', max_length=264)
+    info = models.TextField(verbose_name='info tekst', blank=True, default='')
     subscribe_link = models.URLField(verbose_name='inschrijf link', default='https://www.google.be')
     subscribe_text = models.CharField(verbose_name='link test', default='Schrijf je hier in voor een sessie', max_length=64)
 
@@ -341,6 +329,9 @@ class SessionsPage(Page):
 
         reference = datetime.today()
         return Session.objects.filter(date__gte=reference)
+
+    def testimonials(self):
+        return Testimonial.objects.all()
 
 SessionsPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
@@ -355,10 +346,7 @@ SessionsPage.content_panels = Page.content_panels + [
     ], heading='Info'),
     MultiFieldPanel([
         InlinePanel('gallery')
-    ], heading='afbeeldingen'),
-    MultiFieldPanel([
-        InlinePanel('testimonials')
-    ], heading='Getuigenissen'), 
+    ], heading='afbeeldingen')
 ]
 
 class ContactPageTeamMember(Orderable, TeamMember):
@@ -428,7 +416,7 @@ RelivePageImage.panels = [
 class RelivePage(Page):
 
     subtitle = models.CharField(verbose_name='ondertitel', max_length=64, default='info over DBS')
-    info = models.CharField(verbose_name='info tekst', max_length=512, default='Lorem ipsum')
+    info = models.TextField(verbose_name='info tekst', default='Lorem ipsum')
 
     download_text = models.CharField(verbose_name='Download tekst', max_length=64, default='Download de info brochure')
     download_file = models.ForeignKey(
