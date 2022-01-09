@@ -107,12 +107,12 @@
 
     {% for item in page.upcoming_sessions %}
       {% image item.image fill-300x300 as this_img %}
-      <div class="card bg-primary text-white mx-3">
+      <div class="card bg-white text-white mx-3">
         <img src="{{ this_img.file.url }}" class="card-img" alt="{{ this_img.file }}">
         <div class="card-img-overlay text-center img-darkened d-flex flex-column justify-content-between" style="background-color: rgba(black, 0.9);">
           <h3 class="card-title font-weight-bold">{{ item.date|date:'l M j' }}</h3>
           <a href="{{ item.session.link }}" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
-            <b>{{ page.subscribe_text|upper }}</b>
+            <b>{{ page.subscribe_text|upper }} ({{ item.language }})</b> 
           </a>
         </div>
       </div>
