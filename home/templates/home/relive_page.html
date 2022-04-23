@@ -6,26 +6,6 @@
 
   {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
 
-  <!-- Background video -->
-  <div class="video-background-holder">
-    <div class="video-background-overlay"></div>
-      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-        <source src="{{ page.video }}" type="video/mp4">
-      </video>
-    <div class="video-background-content container h-100">
-      <div class="d-flex h-100 text-center align-items-center">
-        {% comment %} <div class="w-100 text-white">
-          <h1 class="display-4">Bootstrap video background</h1>
-          <p class="lead mb-0">With HTML5 Video and Bootstrap 4</p>
-          <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
-                      <u>Bootstrapious</u></a>
-          </p>
-        </div> {% endcomment %}
-      </div>
-    </div>
-  </div>
-  <!-- End -->
-
   <!-- info + image carousel -->
   <div class="container pt-5">
     <div class="row">
