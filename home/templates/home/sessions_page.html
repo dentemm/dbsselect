@@ -32,9 +32,9 @@
       <div class="col-lg-5">
         <h2 class="text-primary font-weight-bold mb-3">{{ page.subtitle }}</h2>
         <h5>{{ page.info }}</h5>
-        <a href="#upcoming" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
+        {% comment %} <a href="#upcoming" download="DBS Select" target="_blank" class="btn btn-primary btn-white-primary mt-5">
           <b>{{ page.subscribe_text|upper }}</b>
-        </a>
+        </a> {% endcomment %}
       </div>
       <div class="col-lg-6 offset-lg-1">
         <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
@@ -111,7 +111,7 @@
         <img src="{{ this_img.file.url }}" class="card-img" alt="{{ this_img.file }}">
         <div class="card-img-overlay text-center img-darkened d-flex flex-column justify-content-between" style="background-color: rgba(black, 0.9);">
           <h3 class="card-title font-weight-bold">{{ item.date|date:'l M j' }}</h3>
-          <a href="{{ item.session.link }}" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
+          <a href="{{ item.link }}" target="_blank" class="btn btn-primary btn-white-primary mt-5 mb-3">
             <b>{{ page.subscribe_text|upper }} ({{ item.language }})</b> 
           </a>
         </div>

@@ -180,4 +180,6 @@ WAGTAIL_I18N_ENABLED = True
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
 
-WAGTAILIMAGES_MAX_UPLOAD_SIZE = 20 * 1024 * 1024  # i.e. 20MB
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 100 * 1024 * 1024  # i.e. 20MB
+
+PASSWORD_REQUIRED_TEMPLATE = 'overrides/password_required.html'
