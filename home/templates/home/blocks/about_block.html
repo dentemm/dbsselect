@@ -12,9 +12,9 @@
     <div class="col-md-6 bg-white px-0">
       <video 
         class="about" 
-        {% if thumb %}poster="{{ value.video.thumbnail.url }}"{% endif %}
-        controls
-        {% if not thumb %}loop autoplay{% endif %}
+        loop
+        autoplay
+        muted
       >
         <source
           src="{{ value.video.file.url }}"
@@ -85,9 +85,9 @@
     <div class="col-md-6 bg-white px-0">
       <video 
         class="about" 
-        {% if thumb %}poster="{{ value.video.thumbnail.url }}"{% endif %}
-        controls
-        {% if not thumb %}loop autoplay{% endif %}
+        loop
+        autoplay
+        muted
       >
         <source
           src="{{ value.video.file.url }}"
