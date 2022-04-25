@@ -8,17 +8,13 @@
 
   <div class="container">
 
-    <h2>{{ page.press_title }}</h2>
+    <h2 class="mt-5">{{ page.press_title }}</h2>
     <div class="row">
+    {% for item in page.press_articles %}
       <div class="col-sm-6 col-lg-4">
         {% include 'home/partials/press.html' %}
       </div>
-      <div class="col-sm-6 col-lg-4">
-        {% include 'home/partials/press.html' %}
-      </div>
-      <div class="col-sm-6 col-lg-4">
-        {% include 'home/partials/press.html' %}
-      </div>
+    {% endfor %}
     </div>
   </div>
 

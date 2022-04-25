@@ -9,7 +9,7 @@
     <ul class="navbar-nav pl-3">
       <li class="nav-item text-center active px-2 my-3">
       {% with count=page.get_children.count %}
-        <a class="nav-link" href="{% pageurl page.get_parent.get_children.0 %}"><b>HOME</b></a>
+        <a class="nav-link" href="{% slugurl 'home-new' %}"><b>HOME</b></a>
       {% endwith %}
       </li>
       <li class="nav-item text-center px-2 my-3">

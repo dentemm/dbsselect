@@ -266,7 +266,17 @@ HomePage.content_panels = [
 ]
 
 HomePage.parent_page_types = []
-HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage']
+HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage', 'home.HomePageNew']
+
+class HomePageNew(Page):
+
+    template = 'home/home_new.html'
+
+    def get_data(self):
+        return HomePage.objects.first()
+
+HomePageNew.parent_page_types = ['home.HomePage']
+HomePageNew.subpage_types = []
 
 class AboutPage(Page):
 
@@ -403,6 +413,15 @@ class ContactPage(AbstractEmailForm):
     send_button = models.CharField(verbose_name='verzend text', default='Verzenden', max_length=28)
 
     thank_you_text = models.CharField(verbose_name='success message', blank=True, max_length=160)
+
+    team_image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True
+    )
+
+    team_text = models.TextField(null=True)
 
     class Meta:
         verbose_name = 'Contact page'

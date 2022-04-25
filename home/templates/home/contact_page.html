@@ -52,7 +52,7 @@
         </div>
       </form>
       </div>
-      <div class="col-lg-7 pt-5">
+      <div class="col-lg-7 pt-5 pb-5">
         {% image page.directions_image width-1160 as img %}
         <a href="#directionsmodal" data-toggle="modal">
           <img
@@ -62,8 +62,24 @@
         </a>
       </div>
     </div>
+    {% if page.team_image %}
     <h2 class="font-weight-light mt-5">TEAM</h2>
-    {% include 'home/partials/contacts.html' %}
+    <div class="row">
+      <div class="col-md-6">
+       <p>{{ page.team_text }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        {% image page.team_image width-1500 as img %}
+          <img
+            class="img-fluid"
+            src="{{ img.file.url }}"
+          />
+      </div>
+    </div>
+    {% comment %} {% include 'home/partials/contacts.html' %} {% endcomment %}
+    {% endif %}
   </div>
 
   <section class="bg-secondary">
