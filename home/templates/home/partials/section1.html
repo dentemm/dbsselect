@@ -10,7 +10,7 @@
       <div class="col-md-6 text-white py-5 px-5">
         <h2 class="font-weight-light">{{ page.what|upper|richtext }}</h2>
         <p class="font-weight-lights">{{ page.what_info|richtext }}</p>
-        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4"><b>{{ page.download_text|upper }}</b></a>
+        <a href="{{ page.what_file.file.url }}" download="DBS Select" target="_blank" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2"><b>{{ page.download_text|upper }}</b></a>
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
       <div class="col-md-6 text-white py-5 px-5">
         <h2 class="font-weight-light">{{ page.sessions|upper|richtext }}</h2>
         <p class="font-weight-light">{{ page.sessions_info|richtext }}</p>
-        <a href="{{ page.data_link }}" target="_blank" class="btn btn-outline-secondary btn-white-secondary my-4"><b>{{ page.data_text|upper }}</b></a>
+        <a href="{{ page.data_link }}" target="_blank" class="btn btn-outline-secondary btn-white-secondary my-4 px-3 py-2"><b>{{ page.data_text|upper }}</b></a>
       </div>
       <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
         <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
