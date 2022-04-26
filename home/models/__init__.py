@@ -8,7 +8,6 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 
 from wagtailmedia.edit_handlers import MediaChooserPanel
@@ -276,7 +275,7 @@ class HomePageNew(Page):
         return HomePage.objects.first()
 
 HomePageNew.parent_page_types = ['home.HomePage']
-HomePageNew.subpage_types = []
+HomePageNew.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage', 'home.HomePageNew']
 
 class AboutPage(Page):
 
