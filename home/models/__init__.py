@@ -87,7 +87,7 @@ class HomePageVideo(Orderable, Video):
 
 class HomePage(Page):
 
-    # template = 'home/home_new.html'
+    template = 'home/home_new.html'
 
     video = models.ForeignKey(
         'wagtailmedia.Media',
