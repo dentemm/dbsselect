@@ -1,9 +1,7 @@
 from django.db import models
 
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, FieldRowPanel
-
-from wagtailmedia.edit_handlers import MediaChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 
 @register_snippet
 class Video(models.Model):

@@ -19,6 +19,7 @@ from .snippets.partner import Partner
 from .snippets.location import Location
 from .snippets.person import Person
 from .snippets.video import Video
+from .snippets.relive_video import ReliveVideo
 from .snippets.testimonial import Testimonial
 from .snippets.session import Session
 from .snippets.press import Press

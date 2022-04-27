@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+
+<div class="text-white text-center d-md-none bg-secondary px-5 py-3">
+  <div class="mb-3">
+    <small><b>{{ page.funded|upper }}</b></small>
+  </div>
+  {% image page.funded_image height-130 as funded_image %}
+  <img src="{{ funded_image.file.url }}" class="img-fluid" style="max-width: 18rem !important;"/>
+</div>
