@@ -47,6 +47,10 @@ video.about {
   align-items: flex-start;
 }
 
+.navbar-collapse.show {
+  background-color: rgba(0,0,0,0.5);
+}
+
 .navbar-margin {
   height: 5rem;
 }
@@ -127,7 +131,7 @@ video.about {
   }
 
   .logo-wrapper img {
-    height: 150px;
+    height: 125px;
   }
 }
 
@@ -137,7 +141,11 @@ video.about {
   }
 
   .logo-wrapper img {
-    height: 120px;
+    height: 100px !important;
+  }
+
+  #dbs-title.mt-5 {
+    margin-top: 5px !important;
   }
 }
 
