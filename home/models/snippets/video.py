@@ -22,12 +22,12 @@ class Video(models.Model):
     )
     
     class Meta:
-		    verbose_name = 'video'
-		    verbose_name_plural = 'videos'
-		    ordering = ['video', ]
+        verbose_name = 'video'
+        verbose_name_plural = 'videos'
+        ordering = ['video', ]
         
     def __str__(self):
-		    return self.title
+		return self.title
 
 Video.panels = [
 	MultiFieldPanel([
