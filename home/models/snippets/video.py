@@ -27,7 +27,7 @@ class Video(models.Model):
         ordering = ['video', ]
         
     def __str__(self):
-		return self.title
+        return self.title
 
 Video.panels = [
 	MultiFieldPanel([
