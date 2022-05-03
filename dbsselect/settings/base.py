@@ -183,3 +183,8 @@ BASE_URL = 'http://example.com'
 WAGTAILIMAGES_MAX_UPLOAD_SIZE = 100 * 1024 * 1024  # i.e. 20MB
 
 PASSWORD_REQUIRED_TEMPLATE = 'overrides/password_required.html'
+
+# EMBED website 
+X_FRAME_OPTIONS = 'ALLOWALL'
+
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']  
