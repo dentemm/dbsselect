@@ -18,7 +18,7 @@ def contact_page(locale):
 
 @register.simple_tag
 def about_page(locale):
-  AboutPage.objects.all().first().get_url()
+  return AboutPage.objects.all().first().get_url()
   # return AboutPage.objects.all().filter(locale=locale).first().get_url()
 
 @register.simple_tag
