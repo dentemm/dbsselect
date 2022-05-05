@@ -487,6 +487,9 @@ class RelivePage(Page):
     def publications(self):
         return Publication.objects.all()
 
+    def get_videos(self):
+        return ReliveVideo.objects.all()
+
     class Meta:
         verbose_name = 'Relive page'
         verbose_name_plural = 'Relive pages'
