@@ -39,24 +39,25 @@
     </div>
   </div>
 
-  {% comment %} <!-- videos -->
+  <!-- videos -->
   <div class="container">
-    <h2 class="text-primary font-weight-bold mt-5 mb-3 ml-3">Videos</h2>
+    <h2 class="text-primary font-weight-bold ml-3">Videos</h2>
     <div class="row">
     {% for item in page.get_videos %}
-      <div class="col-lg-4 col-md-6 mb-5">
-        <div class="card bg-primary text-white mx-3">
-          <video controls>
-            <source
-              src="{{ item.link_en }}"
-              type="video/mp4"
-            />
-          </video>
-        </div>
+      <div class="col-lg-4 col-md-6 pb-5 pt-5">
+        <iframe
+          width="100%"
+          height="100%"
+          src="{% if page.locale.language_code == 'en' %}{{ item.link_en }}{% else %}{{ item.link_nl }}{% endif %}"
+        >
+        </iframe>
+        <h5 class="text-center mb-5">
+          {% if page.locale.language_code == 'en' %}{{ item.title_en }}{% else %}{{ item.title_nl }}{% endif %}
+        </h5>
       </div>
     {% endfor %}
     </div>
-  </div> {% endcomment %}
+  </div>
 
   <!-- External info -->
   <div class="container">

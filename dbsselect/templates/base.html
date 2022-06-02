@@ -74,9 +74,9 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer">
         </script>
-        <script type="text/javascript" src="{% static 'js/dbsselect.js' %}"></script>
 
         {% block extra_js %}
+            <script type="text/javascript" src="{% static 'js/dbsselect.js' %}"></script>
             {# Override this in templates to add extra javascript #}
         {% endblock %}
     </body>

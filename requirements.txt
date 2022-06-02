@@ -65,7 +65,7 @@ phonenumbers==8.12.2
 phonenumberslite==8.11.4
 Pillow==8.3.1
 pip-autoremove==0.9.0
-polib==1.0.8
+polib==1.1.1
 poxls==1.4.2
 psycopg2==2.8.4
 psycopg2-binary==2.7.4
@@ -106,6 +106,7 @@ virtualenv-clone==0.5.4
 virtualenvwrapper==4.8.4
 wagtail==2.15.5
 wagtail-django-recaptcha==1.0
+wagtail-localize==1.1.2
 wagtailmedia==0.8.0
 WeasyPrint==0.42.3
 webencodings==0.5.1

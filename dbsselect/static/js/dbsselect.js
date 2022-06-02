@@ -7,7 +7,7 @@ window.onload = function () {
       return (match && match[2].length === 11) ? match[2] : null;
   };
 
-  $('iframe').each(function() {
+  $('iframe.embed').each(function() {
 
     const videoUrl = $(this).attr('src');
     const videoId = getId(videoUrl);
