@@ -418,10 +418,11 @@ class ContactPage(AbstractEmailForm):
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
         related_name='+',
-        null=True
+        null=True,
+        blank=True
     )
 
-    team_text = models.TextField(null=True)
+    team_text = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Contact page'

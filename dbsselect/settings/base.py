@@ -135,7 +135,8 @@ LANGUAGE_CODE = 'nl'
 LANGUAGES = WAGTAIL_CONTENT_LANGUAGES = [
     ('nl', 'Dutch'),
     ('en', 'English'),
-    ('fr', 'French')
+    ('fr', 'French'),
+    ('de', 'German'),
 ]
 
 TIME_ZONE = 'UTC'
