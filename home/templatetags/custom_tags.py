@@ -28,3 +28,7 @@ def media_page(locale):
 @register.simple_tag
 def relive_page(locale):
   return RelivePage.objects.all().first().get_url()
+
+@register.simple_tag
+def check_current_page(slug, reference):
+  return reference in slug

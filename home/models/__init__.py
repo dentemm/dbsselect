@@ -266,7 +266,7 @@ HomePage.content_panels = [
 ]
 
 HomePage.parent_page_types = []
-HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage', 'home.HomePageNew']
+HomePage.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage', 'home.HomePageNew', 'home.NewAboutPage']
 
 class HomePageNew(Page):
 
@@ -276,7 +276,7 @@ class HomePageNew(Page):
         return HomePage.objects.first()
 
 HomePageNew.parent_page_types = ['home.HomePage']
-HomePageNew.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage', 'home.HomePageNew']
+HomePageNew.subpage_types = ['home.SessionsPage', 'home.ContactPage', 'home.AboutPage', 'home.MediaPage', 'home.RelivePage', 'home.HomePageNew', 'home.NewAboutPage']
 
 class AboutPage(Page):
 
@@ -511,6 +511,13 @@ RelivePage.content_panels = Page.content_panels + [
 
 RelivePage.parent_page_types = ['home.HomePage']
 RelivePage.subpage_types = []
+
+class NewAboutPage(Page):
+
+    pass
+
+NewAboutPage.parent_page_types = ['home.HomePage']
+NewAboutPage.subpage_types = []
 
 @register_setting
 class BDSSelectSettings(ClusterableModel, BaseSetting):

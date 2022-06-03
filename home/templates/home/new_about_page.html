@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+  {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
+{% endblock %}

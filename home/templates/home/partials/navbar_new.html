@@ -1,4 +1,4 @@
-{% load wagtailcore_tags custom_tags %}
+{% load i18n wagtailcore_tags custom_tags %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
@@ -6,43 +6,82 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse bg-dark" id="navbarSupportedContent">
-    <ul class="navbar-nav pl-3">
-      <li class="nav-item text-center active px-2 my-3">
+    <ul class="navbar-nav">
+      {% slugurl 'home' as home_link %}
+      {% check_current_page home_link request.resolver_match.args.0 as check_home_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_home_link %}active{% endif %} ">
       {% with count=page.get_children.count %}
-        <a class="nav-link" href="{% slugurl 'home' %}"><b>HOME</b></a>
+        <a class="nav-link" href="{{ home_link }}">
+        {% if check_home_link %}
+          <b>HOME</b>
+        {% else %}
+          HOME
+        {% endif %}
+        </a>
       {% endwith %}
       </li>
-      <li class="nav-item text-center px-2 my-3">
-        <a class="nav-link" href="{% about_page page.locale %}">WHAT IS DBS?</a>
+      {% about_page page.locale as about_link %}
+      {% check_current_page about_link request.resolver_match.args.0 as check_about_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_about_link %}active{% endif %}">
+        <a class="nav-link" href="{{ about_link }}">
+        {% if check_about_link %}
+          <b>{% trans 'WHAT IS DBS?' %}</b>
+        {% else %}
+          {% trans 'WHAT IS DBS?' %}
+        {% endif %}
+        </a>
       </li>
-      <li class="nav-item text-center px-2 my-3">
-        <a class="nav-link" href="{% sessions_page page.locale %}">DBS SESSIONS</a>
+      {% sessions_page page.locale as sessions_link %}
+      {% check_current_page sessions_link request.resolver_match.args.0 as check_sessions_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_sessions_link %}active{% endif %}">
+        <a class="nav-link" href="{{ sessions_link }}">
+        {% if check_sessions_link %}
+          <b>{% trans 'DBS SESSIONS' %}</b>
+        {% else %}
+          {% trans 'DBS SESSIONS' %}
+        {% endif %}
+        </a>
       </li>
-      <li class="nav-item text-center px-2 my-3">
-        <a class="nav-link" href="{% media_page page.locale %}">MEDIA</a>
+      {% media_page page.locale as media_link %}
+      {% check_current_page media_link request.resolver_match.args.0 as check_media_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_media_link %}active{% endif %}">
+        <a class="nav-link" href="{{ media_link }}">
+        {% if check_media_link %}
+          <b>{% trans 'MEDIA' %}</b>
+        {% else %}
+          {% trans 'MEDIA' %}
+        {% endif %}
+        </a>
       </li>
-      <li class="nav-item text-center px-2 my-3">
-        <a class="nav-link" href="{% contact_page page.locale %}">CONTACT</a>
+      {% contact_page page.locale as contact_link %}
+      {% check_current_page contact_link request.resolver_match.args.0 as check_contact_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_contact_link %}active{% endif %}">
+        <a class="nav-link" href="{{ contact_link }}">
+        {% if check_contact_link %}
+          <b>{% trans 'CONTACT' %}</b>
+        {% else %}
+          {% trans 'CONTACT' %}
+        {% endif %}
+        </a>
       </li>
-      <li class="nav-item text-center px-2 my-3">
-        <a class="nav-link" href="{% relive_page page.locale %}">RELIVE</a>
+      {% relive_page page.locale as relive_link %}
+      {% check_current_page relive_link request.resolver_match.args.0 as check_relive_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_relive_link %}active{% endif %}">
+        <a class="nav-link" href="{{ relive_link }}">
+        {% if check_relive_link %}
+          <b>{% trans 'RELIVE' %}</b>
+        {% else %}
+          {% trans 'RELIVE' %}
+        {% endif %}
+        </a>
       </li>
-      <li class="nav-item text-center px-2 my-3">
-      </li>
+      {% comment %} <li class="nav-item text-center px-2 my-3">
+        <a class="nav-link" href="{% relive_page page.locale %}">{% trans 'ABOUT' %}</a>
+      </li> {% endcomment %}
     </ul>
-    {% comment %} <div class="ml-auto mr-3">
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>English</option>
-        <option>Nederlands</option>
-        <option>Français</option>
-      </select>
-    </div> {% endcomment %}
   </div>
 </div>
 <script>
- /* $(function(){
-      $('.selectpicker').selectpicker();
-  }); */
 </script>
 </nav>
 <div class="navbar-margin"></div>
