@@ -63,7 +63,7 @@
     {% endif %}
       <div class="col-md-6 text-white py-5 px-5">
         <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
-        <p class="font-weight-lights">{{ value.content }}</p>
+        <p class="font-weight-lights text-justify">{{ value.content }}</p>
       {% if page.subscription_link_text %}
         <a href="{% slugurl 'sessions' %}" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2">
           <b>{{ page.subscription_link_text|upper }}</b>
@@ -76,7 +76,7 @@
 
       <div class="col-md-6 text-white py-5 px-5">
         <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
-        <p class="font-weight-lights">{{ value.content }}</p>
+        <p class="font-weight-lights text-justify">{{ value.content }}</p>
       {% if page.subscription_link_text %}
         <a href="{% slugurl 'sessions' %}" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2">
           <b>{{ page.subscription_link_text|upper }}</b>
