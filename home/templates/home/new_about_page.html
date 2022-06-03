@@ -4,4 +4,18 @@
 
 {% block content %}
   {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-sm-10 offset-sm-1 text-dark py-5">
+        <h2 class="font-weight-light">{{ page.title }}</h2>
+        <p class="font-weight-lights text-justify">{{ page.info|richtext }}</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="bg-secondary mt-5">
+    {% include 'home/partials/footer_new.html' with settings=settings %}
+  </section>
+
 {% endblock %}

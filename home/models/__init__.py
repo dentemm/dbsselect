@@ -515,7 +515,15 @@ RelivePage.subpage_types = []
 
 class NewAboutPage(Page):
 
-    pass
+    template = 'home/new_about_page.html'
+
+    info = RichTextField('Info', null=True, features=['bold', 'link', 'hr'])
+
+NewAboutPage.content_panels = Page.content_panels + [
+    MultiFieldPanel([
+        FieldPanel('info', classname='col8'),
+    ], heading='Inhoud'),
+]
 
 NewAboutPage.parent_page_types = ['home.HomePage']
 NewAboutPage.subpage_types = []
