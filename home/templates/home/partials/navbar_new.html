@@ -81,7 +81,7 @@
     </ul>
 
     <div class="d-flex flex-grow-1 justify-content-end">
-      <div class="btn-group">
+      <div class="btn-group mr-3">
         <button type="button" class="btn btn-danger dropdown-toggle bg-primary" style="border: none;" data-toggle="dropdown" aria-expanded="false">
           {{ page.locale.language_code|upper }}
         </button>
@@ -95,7 +95,7 @@
         {% if not page.locale.language_code == 'fr' %}
           <a class="dropdown-item" href="/fr">FR</a>
         {% endif %}
-                {% if not page.locale.language_code == 'de' %}
+        {% if not page.locale.language_code == 'de' %}
           <a class="dropdown-item" href="/de">DE</a>
         {% endif %}
         </div>
