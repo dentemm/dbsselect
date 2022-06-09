@@ -424,6 +424,9 @@ class ContactPage(AbstractEmailForm):
 
     team_text = models.TextField(null=True, blank=True)
 
+    def get_landing_page_template(self, request, *args, **kwargs):
+      return self.template
+
     class Meta:
         verbose_name = 'Contact page'
         verbose_name_plural = 'Contact pages'
