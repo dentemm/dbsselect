@@ -447,9 +447,9 @@ class ContactPage(AbstractEmailForm):
                 messages.success(request, self.thank_you_text)
                 return render(request, self.get_landing_page_template(request), ctx)
 
-        else: 
-            ctx['form'] = form
-            return render(request, self.get_landing_page_template(request), ctx)
+            else: 
+                ctx['form'] = form
+                return render(request, self.get_landing_page_template(request), ctx)
 
         form = self.get_form(page=self, user=request.user)                
         ctx['form'] = form 
