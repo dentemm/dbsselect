@@ -49,11 +49,17 @@
           width="100%"
           height="100%"
           allowfullscreen
-          src="{% if page.locale.language_code == 'en' %}{{ item.link_en }}{% else %}{{ item.link_nl }}{% endif %}"
+          src="{% if page.locale.language_code == 'en' %}{{ item.link_en }}{% elif page.locale.language_code == 'fr'%}{{ item.link_fr }}{% else %}{{ item.link_nl }}{% endif %}"
         >
         </iframe>
         <h5 class="text-center mb-5">
-          {% if page.locale.language_code == 'en' %}{{ item.title_en }}{% else %}{{ item.title_nl }}{% endif %}
+          {% if page.locale.language_code == 'en' %}
+            {{ item.title_en }}
+          {% elif page.locale.language_code == 'fr' %}
+            {{ item.title_fr }}
+          {% else %}
+            {{ item.title_nl }}
+          {% endif %}
         </h5>
       </div>
     {% endfor %}
