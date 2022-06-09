@@ -10,15 +10,6 @@
     <div class="row">
 
       <!-- CONTACT FORM -->
-      <div class="col-lg-5">
-      {% if messages %}
-        <div class="messages mb-2">
-            {% for message in messages %}
-            <p class="eyebrow text-green">{{ message }}</p>
-            {% endfor %}
-        </div>
-      {% endif %}
-
       <h2 class="font-weight-light mt-5">CONTACT FORM</h2>
       <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
@@ -45,6 +36,15 @@
         {% endfor %}
       {% endif %}
         {% endfor %}
+
+      {% if messages %}
+        <div class="messages mb-2 mt-2">
+            {% for message in messages %}
+            <p class="eyebrow text-primary">{{ message }}</p>
+            {% endfor %}
+        </div>
+      {% endif %}
+
         <div class="form-row mt-3">
           <div class="col">
             <button type="submit" class="btn btn-primary px-5 mb-5 mt-3">{{ page.send_button }}</button>
