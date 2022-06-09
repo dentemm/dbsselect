@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags custom_tags %}
 
 {% image settings.home.BDSSelectSettings.logo_white width-200 as logo %}
 
@@ -29,19 +29,19 @@
               <a class="nav-link" href="{% slugurl 'home' %}"><b>HOME</b></a>
             </li>
             <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% slugurl 'info' %}">WHAT IS DBS?</a>
+              <a class="nav-link" href="{% about_page page.locale %}">WHAT IS DBS?</a>
             </li>
             <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% slugurl 'sessions' %}">DBS SESSIONS</a>
+              <a class="nav-link" href="{% sessions_page page.locale %}">DBS SESSIONS</a>
             </li>
             <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% slugurl 'media' %}">MEDIA</a>
+              <a class="nav-link" href="{% media_page page.locale %}">MEDIA</a>
             </li>
             <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% slugurl 'contact' %}">CONTACT</a>
+              <a class="nav-link" href="{% contact_page page.locale %}">CONTACT</a>
             </li>
             <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% slugurl 'relive' %}">RELIVE</a>
+              <a class="nav-link" href="{% relive_page page.locale %}">RELIVE</a>
             </li>
           </ul>
           <div class="d-flex flex-grow-1 justify-content-end align-items-center mt-5 mr-3">
