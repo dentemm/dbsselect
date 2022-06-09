@@ -4,6 +4,8 @@ from datetime import datetime
 
 from django.db import models
 from django.template.loader import render_to_string
+from django.shortcuts import render
+from django.contrib import messages
 
 from wagtail.core.models import Page, Orderable
 from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel, StreamFieldPanel, PageChooserPanel
@@ -429,6 +431,30 @@ class ContactPage(AbstractEmailForm):
 
     def get_landing_page_template(self, request, *args, **kwargs):
       return self.template
+
+
+    def serve(self, request, *args, **kwargs):
+
+        ctx = self.get_context(request)
+
+        if request.method == 'POST':
+            form = self.get_form(request.POST, page=self, user=request.user)
+        
+            if form.is_valid():
+                self.process_form_submission(form)
+                ctx['form'] = self.get_form(page=self, user=request.user)
+
+                messages.success(request, self.thank_you_text)
+                return render(request, self.get_landing_page_template(request), ctx)
+
+        else: 
+            ctx['form'] = form
+            return render(request, self.get_landing_page_template(request), ctx)
+
+        form = self.get_form(page=self, user=request.user)                
+        ctx['form'] = form 
+
+        return render(request, self.get_template(request), ctx)
 
     def send_mail(self, form):
 
