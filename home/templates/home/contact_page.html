@@ -19,7 +19,7 @@
         </div>
       {% endif %}
 
-      <h2 class="font-weight-light mt-5">CONTACT FORM - {{ form }}</h2>
+      <h2 class="font-weight-light mt-5">CONTACT FORM</h2>
       <form action="{% pageurl page %}" method="POST">
         {% csrf_token %}
         {% for field in form %}
