@@ -1,6 +1,6 @@
 from django import template
 
-from ..models import SessionsPage, ContactPage, MediaPage, AboutPage, RelivePage
+from ..models import SessionsPage, ContactPage, MediaPage, AboutPage, RelivePage, NewAboutPage
 
 register = template.Library()
 
@@ -13,7 +13,7 @@ def contact_page(locale):
   return ContactPage.objects.all().filter(locale=locale).first().get_url()
 
 @register.simple_tag
-def about_page(locale):
+def info_page(locale):
   return AboutPage.objects.all().filter(locale=locale).first().get_url()
 
 @register.simple_tag
@@ -23,6 +23,10 @@ def media_page(locale):
 @register.simple_tag
 def relive_page(locale):
   return RelivePage.objects.all().filter(locale=locale).first().get_url()
+
+@register.simple_tag
+def about_page(locale):
+  return NewAboutPage.objects.all().filter(locale=locale).first().get_url()
 
 @register.simple_tag
 def check_current_page(slug, reference):

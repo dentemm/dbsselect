@@ -119,7 +119,7 @@ class HomePage(Page):
     info_text = models.TextField('DBS info', default='', null=True)
 
     # CHILD PAGES
-    about_page = models.ForeignKey(
+    info_page = models.ForeignKey(
         'home.AboutPage',
         verbose_name='wat is DBS pagina',
         null=True,

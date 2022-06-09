@@ -20,11 +20,11 @@
         </a>
       {% endwith %}
       </li>
-      {% about_page page.locale as about_link %}
-      {% check_current_page about_link request.resolver_match.args.0 as check_about_link %}
-      <li class="nav-item text-center px-2 my-3 {% if check_about_link %}active{% endif %}">
-        <a class="nav-link" href="{{ about_link }}">
-        {% if check_about_link %}
+      {% info_page page.locale as info_link %}
+      {% check_current_page info_link request.resolver_match.args.0 as check_info_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_info_link %}active{% endif %}">
+        <a class="nav-link" href="{{ info_link }}">
+        {% if check_info_link %}
           <b>{% trans 'WHAT IS DBS?' %}</b>
         {% else %}
           {% trans 'WHAT IS DBS?' %}
@@ -75,9 +75,18 @@
         {% endif %}
         </a>
       </li>
-      {% comment %} <li class="nav-item text-center px-2 my-3">
-        <a class="nav-link" href="{% relive_page page.locale %}">{% trans 'ABOUT' %}</a>
-      </li> {% endcomment %}
+      </li>
+      {% about_page page.locale as about_link %}
+      {% check_current_page about_link request.resolver_match.args.0 as check_about_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_about_link %}active{% endif %}">
+        <a class="nav-link" href="{{ about_link }}">
+        {% if check_about_link %}
+          <b>{% trans 'ABOUT' %}</b>
+        {% else %}
+          {% trans 'ABOUT' %}
+        {% endif %}
+        </a>
+      </li>
     </ul>
 
     <div class="d-flex flex-grow-1 justify-content-end">
