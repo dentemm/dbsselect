@@ -1,6 +1,9 @@
+import os
+import sendgrid
 from datetime import datetime
 
 from django.db import models
+from django.template.loader import render_to_string
 
 from wagtail.core.models import Page, Orderable
 from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel, FieldRowPanel, FieldPanel, StreamFieldPanel, PageChooserPanel
@@ -426,6 +429,38 @@ class ContactPage(AbstractEmailForm):
 
     def get_landing_page_template(self, request, *args, **kwargs):
       return self.template
+
+    def send_mail(self, form):
+
+        subject = self.subject
+        sender = self.from_address
+
+        ctx = {}
+        ctx['form'] = form
+        content = render_to_string('home/mails/contact_form.html', ctx)
+
+        try:
+            sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+            data = {
+                "personalizations": [{
+                    "to": [
+                        {"email": self.to_address}
+                    ],
+                    "subject": subject
+                    }],
+                    "from": {
+                    "email": sender
+                    },
+                    "content": [{
+                    "type": "text/html",
+                    "value": content
+                    }]
+                }
+
+            sg.client.mail.send.post(request_body=data)
+
+        except Exception as error:
+            print("+++ error", error)
 
     class Meta:
         verbose_name = 'Contact page'
