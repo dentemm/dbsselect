@@ -432,6 +432,17 @@ class ContactPage(AbstractEmailForm):
     def get_landing_page_template(self, request, *args, **kwargs):
       return self.template
 
+    def save(self, *args, **kwargs):
+
+        if not self.from_address:
+            self.from_address = 'info@health-house.be'
+
+        
+        if not self.to_address:
+            self.to_address = 'info@health-house.be'
+
+        super(ContactPage, self).save(*args, **kwargs)
+
 
     def serve(self, request, *args, **kwargs):
 
@@ -470,7 +481,7 @@ class ContactPage(AbstractEmailForm):
             data = {
                 "personalizations": [{
                     "to": [
-                        {"email": self.to_address}
+                        {"email": "tim.claes@me.com"}
                     ],
                     "subject": subject
                     }],
