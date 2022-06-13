@@ -481,7 +481,7 @@ class ContactPage(AbstractEmailForm):
             data = {
                 "personalizations": [{
                     "to": [
-                        {"email": "tim.claes@me.com"}
+                        {"email": self.to_address}
                     ],
                     "subject": subject
                     }],
