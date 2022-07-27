@@ -55,8 +55,8 @@ INSTALLED_APPS = [
 
     'storages',
     'wagtailmedia',
-    'captcha',
-    'wagtailcaptcha',
+    # 'captcha',
+    # 'wagtailcaptcha',
     'widget_tweaks',
 ]
 
