@@ -123,14 +123,15 @@ class HomePage(Page):
     # NEW PAGE
     info_text = models.TextField('DBS info', default='', null=True)
 
-    about_page = models.ForeignKey(
-        'home.AboutPage',
-        verbose_name='wat is DBS pagina',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-    )
+    # about_page = models.ForeignKey(
+    #     'home.AboutPage',
+    #     verbose_name='wat is DBS pagina',
+    #     null=True,
+    #     blank=True,
+    #     on_delete=models.SET_NULL,
+    #     related_name='+',
+    # )
+
     # CHILD PAGES
     info_page = models.ForeignKey(
         'home.AboutPage',
