@@ -1,8 +1,12 @@
 from django import template
 
-from ..models import SessionsPage, ContactPage, MediaPage, AboutPage, RelivePage, NewAboutPage
+from ..models import SessionsPage, ContactPage, MediaPage, AboutPage, RelivePage, NewAboutPage, HomePageNew
 
 register = template.Library()
+
+@register.simple_tag
+def home_page(locale):
+  return HomePageNew.objects.all().filter(locale=locale).first().get_url()
 
 @register.simple_tag
 def sessions_page(locale):

@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags custom_tags %}
 
 <div id="what" class="container-fluid bg-{{ color }} px-0">
   <div class="container">
@@ -65,7 +65,8 @@
         <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
         <p class="font-weight-lights text-justify">{{ value.content }}</p>
       {% if page.subscription_link_text %}
-        <a href="{% slugurl 'sessions' %}" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2">
+        {% sessions_page page.locale as sessions_link %}
+        <a href="{{ sessions_link }}" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2">
           <b>{{ page.subscription_link_text|upper }}</b>
         </a>
       {% endif %}
@@ -78,7 +79,8 @@
         <h2 class="font-weight-light">{{ value.title|upper|richtext }}</h2>
         <p class="font-weight-lights text-justify">{{ value.content }}</p>
       {% if page.subscription_link_text %}
-        <a href="{% slugurl 'sessions' %}" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2">
+        {% sessions_page page.locale as sessions_link %}
+        <a href="{{ sessions_link }}" class="btn btn-outline-primary btn-white-primary my-4 px-3 py-2">
           <b>{{ page.subscription_link_text|upper }}</b>
         </a>
       {% endif %}

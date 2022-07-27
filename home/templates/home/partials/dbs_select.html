@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags custom_tags %}
 
 <section class="bg-primary">
   <div class="container">
@@ -10,9 +10,10 @@
         <p class="font-weight-light text-white text-justify">
           {{ page.info_text }}
         </p>
+        {% sessions_page page.locale as sessions_link %}
         <a 
           class="btn btn-outline-secondary btn-white-secondary mt-4 mb-5"
-          href="{% slugurl 'sessions' %}"
+          href="{{ sessions_link }}"
         >
           <b>MORE INFORMATION</b>
         </a>

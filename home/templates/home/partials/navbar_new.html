@@ -7,7 +7,7 @@
   </button>
   <div class="collapse navbar-collapse bg-dark" id="navbarSupportedContent">
     <ul class="navbar-nav">
-      {% slugurl 'home' as home_link %}
+      {% home_page page.locale as home_link %}
       {% check_current_page home_link request.resolver_match.args.0 as check_home_link %}
       <li class="nav-item text-center px-2 my-3 {% if check_home_link %}active{% endif %} ">
       {% with count=page.get_children.count %}
