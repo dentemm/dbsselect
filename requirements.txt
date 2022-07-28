@@ -80,7 +80,7 @@ pysolr==3.5.0
 python-dateutil==2.8.1
 python-http-client==3.3.2
 pytz==2019.3
-PyYAML==5.1.2
+PyYAML==5.4
 rcssmin==1.0.6
 reportlab==3.5.42
 requests==2.22.0
