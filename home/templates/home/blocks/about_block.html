@@ -9,7 +9,7 @@
 
     {% if value.video %}
       {% with value.video.thumbnail as thumb %}
-    <div class="col-md-6 bg-white px-0">
+    <div class="col-md-6 bg-primary px-0">
       <video 
         class="about" 
         loop
@@ -53,11 +53,11 @@
 
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+      <div class="col-md-6 bg-primary bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
         <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
       </div>
     {% else %}
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+      <div class="col-md-6 bg-primary bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
         <div style="height: 100%: width: 100%" class="triangle-primary-right"></div>
       </div>
     {% endif %}
@@ -131,11 +131,11 @@
       </div>
     {% elif value.image %}
       {% image value.image width-600 as bg_img %}
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+      <div class="col-md-6 bg-secondary bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
         <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
       </div>
     {% else %}
-      <div class="col-md-6 bg-white bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
+      <div class="col-md-6 bg-secondary bg-img px-0" style="background-image: url({{ bg_img.file.url }})">
         <div style="height: 100%: width: 100%" class="triangle-secondary-left"></div>
       </div>
     {% endif %}
