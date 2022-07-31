@@ -42,6 +42,17 @@
         {% endif %}
         </a>
       </li>
+      {% about_page page.locale as about_link %}
+      {% check_current_page about_link request.resolver_match.args.0 as check_about_link %}
+      <li class="nav-item text-center px-2 my-3 {% if check_about_link %}active{% endif %}">
+        <a class="nav-link" href="{{ about_link }}">
+        {% if check_about_link %}
+          <b>{% trans 'ABOUT' %}</b>
+        {% else %}
+          {% trans 'ABOUT' %}
+        {% endif %}
+        </a>
+      </li>
       {% media_page page.locale as media_link %}
       {% check_current_page media_link request.resolver_match.args.0 as check_media_link %}
       <li class="nav-item text-center px-2 my-3 {% if check_media_link %}active{% endif %}">
@@ -75,17 +86,6 @@
         {% endif %}
         </a>
       </li>
-      </li>
-      {% about_page page.locale as about_link %}
-      {% check_current_page about_link request.resolver_match.args.0 as check_about_link %}
-      <li class="nav-item text-center px-2 my-3 {% if check_about_link %}active{% endif %}">
-        <a class="nav-link" href="{{ about_link }}">
-        {% if check_about_link %}
-          <b>{% trans 'ABOUT' %}</b>
-        {% else %}
-          {% trans 'ABOUT' %}
-        {% endif %}
-        </a>
       </li>
     </ul>
 
