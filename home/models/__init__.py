@@ -1,4 +1,6 @@
 import os
+from pydoc import classname
+
 import sendgrid
 from datetime import datetime
 
@@ -102,6 +104,10 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    more_information = models.CharField(max_length=128, default='More information')
+    founding_partners = models.CharField(max_length=128, default='Founding partners')
+    supporting_partners = models.CharField(max_length=128, default='Supporting partners')
 
     subtitle = RichTextField('Ondertitel', null=True, features=['bold', ])
     background_image = models.ForeignKey(
@@ -216,7 +222,7 @@ class HomePage(Page):
     def project_partners(self):
         return Partner.objects.filter(partner_type=1)
 
-    def supporting_partners(self):
+    def get_supporting_partners(self):
         return Partner.objects.filter(partner_type=2)
 
     # VIDEOS
@@ -241,6 +247,9 @@ HomePage.content_panels = [
     # ], heading="Andere pagina's"),
     MultiFieldPanel([
         FieldPanel('info_text', classname='col10'),
+        FieldPanel('more_information', classname='col10'),
+        FieldPanel('founding_partners', classname='col10'),
+        FieldPanel('supporting_partners', classname='col10')
     ], heading="New website", classname='collapsible collapsed'),
     MultiFieldPanel([
         InlinePanel('images'),
