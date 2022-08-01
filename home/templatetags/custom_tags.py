@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.simple_tag
 def home_page(locale):
-  return HomePageNew.objects.all().filter(locale=locale).first().get_url()
+  return f'/{locale.language_code}'
 
 @register.simple_tag
 def sessions_page(locale):
