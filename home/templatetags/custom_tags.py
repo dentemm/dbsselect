@@ -35,3 +35,15 @@ def about_page(locale):
 @register.simple_tag
 def check_current_page(slug, reference):
   return reference in slug
+
+@register.simple_tag
+def get_testimonial_content(testimonial, locale):
+  return testimonial.get_testimonial_content(locale)
+
+@register.simple_tag
+def get_media_title(media, locale):
+  return media.get_title(locale)
+
+@register.simple_tag
+def get_media_content(media, locale):
+  return media.get_content(locale)

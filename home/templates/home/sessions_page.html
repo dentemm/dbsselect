@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags custom_tags %}
 
 {% block content %}
 
@@ -69,7 +69,7 @@
               {% for item in page.testimonials %}
               <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 <blockquote class="blockquote">
-                  <h3 class="mb-0 text-center">{{ item.content }}</h3>
+                  <h3 class="mb-0 text-center">{% get_testimonial_content item page.locale.language_code %}</h3>
                   <footer class="blockquote-footer mt-4 text-right"><span class="font-weight-bold">{{ item.person }}</span><br/> <cite title="Source Title" class="font-italic">{{ item.testimonial.person.info }}</cite></footer>
                 </blockquote>
               </div>
