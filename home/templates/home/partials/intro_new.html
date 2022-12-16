@@ -31,36 +31,16 @@
                 <b>HOME</b>
               </a>
             </li>
-            <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% info_page page.locale %}">
-                {% trans 'WHAT IS DBS?' %}
-              </a>
-            </li>
-            <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% sessions_page page.locale %}">
-                {% trans 'DBS SESSIONS' %}
-              </a>
-            </li>
-            <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% about_page page.locale %}">
-                {% trans 'ABOUT' %}
-              </a>
-            </li>
-            <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% media_page page.locale %}">
-                {% trans 'MEDIA' %}
-              </a>
-            </li>
-            <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% contact_page page.locale %}">
-              {% trans 'CONTACT' %}
-              </a>
-            </li>
-            <li class="nav-item text-center px-2 mt-5">
-              <a class="nav-link" href="{% relive_page page.locale %}">
-                {% trans 'RELIVE' %}
-              </a>
-            </li>
+        {% get_menu page.locale.language_code as navigation %}
+          {% for item in navigation.menu_items.all %}
+          <li class="nav-item text-center px-2 mt-5">
+            <a class="nav-link" href="{{ item.link }}">
+            {% if check_is_active %}<b>{% endif %}
+              {{ item.title|upper }}
+            {% if check_is_active %}</b>{% endif %}
+            </a>
+          </li>
+          {% endfor %}
           </ul>
           <div class="d-flex flex-grow-1 justify-content-end align-items-center mt-5 mr-3">
             <div class="btn-group">
