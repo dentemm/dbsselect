@@ -32,6 +32,8 @@ from .snippets.session import Session
 from .snippets.press import Press
 from .snippets.team import TeamMember
 from .snippets.publication import Publication
+from .snippets.team_image import TeamImage
+from .snippets.menu import Menu
 
 from .blocks.about_stream_block import AboutPageStreamBlock
 

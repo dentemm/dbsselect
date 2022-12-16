@@ -1,6 +1,7 @@
 from django import template
 
 from ..models import SessionsPage, ContactPage, MediaPage, AboutPage, RelivePage, NewAboutPage, HomePageNew
+from ..models.snippets.menu import Menu
 
 register = template.Library()
 
@@ -47,3 +48,9 @@ def get_media_title(media, locale):
 @register.simple_tag
 def get_media_content(media, locale):
   return media.get_content(locale)
+
+@register.simple_tag()
+def get_menu(lang):
+  identifier = f'navigatie_{lang}'
+
+  return Menu.objects.filter(identifier=identifier).first()

@@ -5,6 +5,9 @@
   <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  {% get_menu page.locale.language_code as navigation %}
+
   <div class="collapse navbar-collapse bg-dark" id="navbarSupportedContent">
     <ul class="navbar-nav">
       {% home_page page.locale as home_link %}
@@ -20,7 +23,24 @@
         </a>
       {% endwith %}
       </li>
-      {% info_page page.locale as info_link %}
+
+      {% for item in navigation.menu_items.all %}
+
+      {% check_current_page item.link request.resolver_match.args.0 as check_is_active %}
+
+
+      <li class="nav-item text-center px-2 my-3">
+        <a class="nav-link" href="{{ item.link }}">
+        {% if check_is_active %}<b>{% endif %}
+          {{ item.title|upper }}
+        {% if check_is_active %}</b>{% endif %}
+        </a>
+      </li>
+      {% endfor %}
+
+
+
+      {% comment %} {% info_page page.locale as info_link %}
       {% check_current_page info_link request.resolver_match.args.0 as check_info_link %}
       <li class="nav-item text-center px-2 my-3 {% if check_info_link %}active{% endif %}">
         <a class="nav-link" href="{{ info_link }}">
@@ -86,8 +106,8 @@
         {% endif %}
         </a>
       </li>
-      </li>
-    </ul>
+      </li>{% endcomment %}
+    </ul> 
 
     <div class="d-flex flex-grow-1 justify-content-end">
       <div class="btn-group mr-3">
