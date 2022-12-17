@@ -3,6 +3,7 @@ from django.db import models
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 @register_snippet
 class Press(models.Model):
@@ -19,7 +20,16 @@ class Press(models.Model):
     title_de = models.CharField(verbose_name='titel (DE)', max_length=128)
     content_de = models.CharField(verbose_name='korte inhoud (DE)', max_length=512)
 
-    url = models.URLField(verbose_name='link')
+    url = models.URLField(verbose_name='Externe link', blank=True, null=True)
+    pdf = models.ForeignKey(
+        'wagtaildocs.Document',
+        verbose_name='PDF bestand',
+        on_delete=models.SET_NULL,
+        related_name='+',
+        null=True,
+        blank=True
+    )
+
     image = models.ForeignKey(
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
@@ -80,6 +90,8 @@ Press.panels = [
             FieldPanel('content_de', classname='col8'),
 
             FieldPanel('url', classname='col6'),
+            DocumentChooserPanel('pdf', classname='col8'),
+
             ImageChooserPanel('image', classname='col10'),
 		], 
         heading='Pers artikel'

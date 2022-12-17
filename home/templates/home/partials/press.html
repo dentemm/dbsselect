@@ -1,6 +1,12 @@
 {% load wagtailimages_tags custom_tags %}
 
+{% if item.pdf %}
+<a class="card mb-3 mt-3 text-decoration-none text-dark h-100" style="max-width: 540px;" href="{{ item.pdf.file.url }}" download="DBS Select" target="_blank">
+{% elif item.url %}
 <a class="card mb-3 mt-3 text-decoration-none text-dark h-100" style="max-width: 540px;" href="{{ item.url }}" target="_blank">
+{% else %}
+<a class="card mb-3 mt-3 text-decoration-none text-dark h-100" style="max-width: 540px;">
+{% endif %}
   {% image item.image height-200 as item_img %}
   <div class="d-flex text-center px-3 pt-2 justify-content-center align-items-center" style="height: 200px;">
     <img src="{{ item_img.file.url }}" class="img-fluid">
