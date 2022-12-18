@@ -614,9 +614,15 @@ class NewAboutPage(Page):
 
     info = RichTextField('Info', null=True, features=['bold', 'link', 'hr'])
 
+    mission = models.CharField('missie', null=True, max_length=512)
+    vision = models.CharField('visie', null=True, max_length=512)
+
+
 NewAboutPage.content_panels = Page.content_panels + [
     MultiFieldPanel([
         FieldPanel('info', classname='col8'),
+        FieldPanel('mission',  classname='col8'),
+        FieldPanel('vision', classname='col8'),
     ], heading='Inhoud'),
 ]
 

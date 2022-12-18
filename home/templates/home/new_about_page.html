@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags custom_tags %}
 
 {% block content %}
   {% include 'home/partials/navbar_new.html' with page=page settings=settings %}
@@ -13,9 +13,63 @@
       </div>
     </div>
   </div>
+    
+
+      <!-- Mission & Vision -->
+    <div class="container">
+      <div class="row">
+        <div class="offset-lg-3 col-lg-6">
+          <div id="carousel-testimonials" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="text-center">
+                  <h5 class="mb-3 mt-1 text-primary text-uppercase font-weight-bold">{% trans 'Mission' %}</h5>
+                </div>
+                <blockquote class="blockquote">
+                  <h3 class="mb-0 text-center">{{ page.mission }}</h3>
+                </blockquote>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center">
+                  <h5 class="mb-3 mt-1 text-primary text-uppercase font-weight-bold">{% trans 'Vision' %}</h5>
+                </div>
+                <blockquote class="blockquote">
+                  <h3 class="mb-0 text-center">{{ page.vision }}</h3>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
   <section class="bg-secondary mt-5">
     {% include 'home/partials/footer_new.html' with settings=settings %}
   </section>
 
+{% endblock %}
+
+{% block extra_js %}
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+      items: 4,
+      loop: true,
+      autoplay: true,
+      responsive: {
+        0: {
+          items: 2
+        },
+        600: {
+          items: 3,
+        },
+        950: {
+          item: 4
+        }
+      }
+    });
+  });
+  </script>
 {% endblock %}
