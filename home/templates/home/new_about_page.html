@@ -23,7 +23,9 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="text-center">
-                  <h5 class="mb-3 mt-1 text-primary text-uppercase font-weight-bold">{% trans 'Mission' %}</h5>
+                  <h5 class="mb-3 mt-1 text-primary text-uppercase font-weight-bold">
+                    {% if page.locale.language_code == 'nl' %}Missie{% else %}Mission{% endif %}
+                  </h5>
                 </div>
                 <blockquote class="blockquote">
                   <h3 class="mb-0 text-center">{{ page.mission }}</h3>
@@ -31,7 +33,9 @@
               </div>
               <div class="carousel-item">
                 <div class="text-center">
-                  <h5 class="mb-3 mt-1 text-primary text-uppercase font-weight-bold">{% trans 'Vision' %}</h5>
+                  <h5 class="mb-3 mt-1 text-primary text-uppercase font-weight-bold">
+                    {% if page.locale.language_code == 'nl' %}Visie{% else %}Vision{% endif %}
+                  </h5>
                 </div>
                 <blockquote class="blockquote">
                   <h3 class="mb-0 text-center">{{ page.vision }}</h3>
